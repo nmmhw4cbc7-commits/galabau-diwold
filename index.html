@@ -71,14 +71,14 @@
   .header-inner{
     max-width:var(--max-width);
     margin:0 auto;
-    padding:18px 32px;
+    padding:12px 32px;
     display:flex;
     align-items:center;
     justify-content:space-between;
     gap:24px;
   }
   @media(max-width:900px){
-    .header-inner{padding:16px 20px;}
+    .header-inner{padding:10px 20px;}
   }
   .logo-link{display:flex;align-items:center;}
   nav.main-nav ul{
@@ -445,7 +445,7 @@
 <header class="site-header">
   <div class="header-inner">
     <a href="#" class="logo-link">
-      <img src="logo.png" alt="GaLaBau Diwold Logo" style="height: 45px; width: auto;">
+      <img src="logo.png" alt="GaLaBau Diwold Logo" style="height: 72px; width: auto;">
     </a>
     <nav class="main-nav">
       <ul>
@@ -736,15 +736,11 @@
     submitBtn.textContent = 'Wird gesendet...';
     submitBtn.disabled = true;
 
-    var formData = new FormData(form);
-
-    // Gartenplaner-Daten anhängen
+    // Gartenplaner-Daten sammeln
     var selectedServices = [];
     document.querySelectorAll('.tile.active').forEach(function(tile){
       selectedServices.push(tile.dataset.service);
     });
-    formData.append('leistungen', selectedServices.join(', '));
-    formData.append('flaeche_m2', flaecheInput.value || '0');
 
     var selectedExtras = [];
     checkboxes.forEach(function(cb){
@@ -752,12 +748,23 @@
         selectedExtras.push(cb.nextElementSibling.textContent.trim());
       }
     });
-    formData.append('zusatzleistungen', selectedExtras.join(', '));
-    formData.append('preisspanne', document.getElementById('result-value').textContent);
 
-    fetch('senden.php', {
+    var payload = {
+      name: document.getElementById('name').value,
+      email: document.getElementById('email').value,
+      telefon: document.getElementById('telefon').value,
+      plz: plzInput.value,
+      nachricht: document.getElementById('nachricht').value,
+      leistungen: selectedServices.join(', '),
+      flaeche_m2: flaecheInput.value || '0',
+      zusatzleistungen: selectedExtras.join(', '),
+      preisspanne: document.getElementById('result-value').textContent
+    };
+
+    fetch('/api/senden', {
       method: 'POST',
-      body: formData
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
     })
     .then(function(response){ return response.json(); })
     .then(function(data){
