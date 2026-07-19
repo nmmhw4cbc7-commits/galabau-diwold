@@ -1,0 +1,135 @@
+/**
+ * api/senden.js
+ * GaLaBau Diwold – Kontaktformular-Handler für Vercel (Node.js Serverless Function)
+ * Validiert die eingehenden Daten und verschickt die Anfrage per E-Mail über Resend.
+ */
+
+// PLZ-Präfixe im 50-km-Radius um Römerberg (Pfalz)
+const VALID_PLZ_PREFIXES = ['67', '68', '69', '76'];
+
+// Ziel-E-Mail-Adresse, an die Anfragen gehen
+const EMPFAENGER = 'philippdachtler01@gmail.com';
+
+// Bereinigt Text-Eingaben (verhindert einfache HTML/Skript-Injektion)
+function cleanInput(value) {
+  if (typeof value !== 'string') return '';
+  return value
+    .trim()
+    .replace(/<[^>]*>/g, '')   // HTML-Tags entfernen
+    .replace(/[\r\n]/g, ' ');  // Zeilenumbrüche entfernen (Header-Injection-Schutz)
+}
+
+function isValidEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+module.exports = async (req, res) => {
+  // Nur POST-Anfragen akzeptieren
+  if (req.method !== 'POST') {
+    res.status(405).json({ status: 'error', message: 'Ungültige Anfragemethode.' });
+    return;
+  }
+
+  try {
+    const body = req.body || {};
+
+    const name = cleanInput(body.name);
+    const email = cleanInput(body.email);
+    const telefon = cleanInput(body.telefon);
+    const plz = cleanInput(body.plz);
+    const nachricht = cleanInput(body.nachricht);
+
+    const leistungen = cleanInput(body.leistungen);
+    const flaeche = cleanInput(body.flaeche_m2);
+    const zusatzleistungen = cleanInput(body.zusatzleistungen);
+    const preisspanne = cleanInput(body.preisspanne);
+
+    // Pflichtfelder prüfen
+    if (!name || !email || !isValidEmail(email) || !nachricht) {
+      res.status(400).json({
+        status: 'error',
+        message: 'Bitte füllen Sie alle erforderlichen Felder aus.'
+      });
+      return;
+    }
+
+    // Serverseitige PLZ-Umkreisprüfung (zusätzlich zur Frontend-Prüfung)
+    const plzPrefix = plz.substring(0, 2);
+    if (!plz || !VALID_PLZ_PREFIXES.includes(plzPrefix)) {
+      res.status(400).json({
+        status: 'error',
+        message: 'Leider liegt Ihr Projekt außerhalb unseres aktuellen Einzugsgebiets (50 km um Römerberg).'
+      });
+      return;
+    }
+
+    // E-Mail-Inhalt zusammenstellen
+    const textBody = [
+      'Es ist eine neue Anfrage über das Kontaktformular der Website eingegangen.',
+      '========================================================',
+      '',
+      'KUNDENDATEN',
+      '--------------------------------------------------------',
+      `Name:            ${name}`,
+      `E-Mail:          ${email}`,
+      `Telefon:         ${telefon || '(nicht angegeben)'}`,
+      `PLZ:             ${plz}`,
+      '',
+      'PROJEKTDETAILS',
+      '--------------------------------------------------------',
+      nachricht,
+      '',
+      'DETAILS AUS DEM GARTENPLANER-RECHNER',
+      '--------------------------------------------------------',
+      `Gewählte Leistungen:      ${leistungen || '(keine Auswahl)'}`,
+      `Fläche:                   ${flaeche ? flaeche + ' m²' : '(nicht angegeben)'}`,
+      `Zusatzleistungen:         ${zusatzleistungen || '(keine Auswahl)'}`,
+      `Errechnete Preisspanne:   ${preisspanne || '(nicht berechnet)'}`,
+      '',
+      '========================================================',
+      'Diese Nachricht wurde automatisch über das Kontaktformular',
+      'auf der Website von GaLaBau Diwold generiert.'
+    ].join('\n');
+
+    // ---------- Versand über Resend ----------
+    const resendResponse = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        // Solange keine eigene Domain bei Resend verifiziert ist, MUSS hier
+        // "onboarding@resend.dev" stehen. Sobald eine Domain verifiziert ist,
+        // kannst du z.B. "anfrage@galabau-diwold.de" verwenden.
+        from: 'GaLaBau Diwold Website <onboarding@resend.dev>',
+        to: [EMPFAENGER],
+        reply_to: email,
+        subject: 'Neue Anfrage über die Website – GaLaBau Diwold',
+        text: textBody
+      })
+    });
+
+    if (!resendResponse.ok) {
+      const errorDetails = await resendResponse.text();
+      console.error('Resend-Fehler:', errorDetails);
+      res.status(500).json({
+        status: 'error',
+        message: 'Beim Versand ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns telefonisch.'
+      });
+      return;
+    }
+
+    res.status(200).json({
+      status: 'success',
+      message: 'Ihre Nachricht wurde erfolgreich übermittelt.'
+    });
+
+  } catch (err) {
+    console.error('Serverfehler:', err);
+    res.status(500).json({
+      status: 'error',
+      message: 'Beim Versand ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns telefonisch.'
+    });
+  }
+};
