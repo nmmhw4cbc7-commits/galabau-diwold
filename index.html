@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GaLaBau Diwold — Garten- und Landschaftsbau in der Pfalz</title>
+<meta name="description" content="GaLaBau Diwold – Ihr Garten- und Landschaftsbau-Betrieb rund um Römerberg. Terrassenbau, Pflasterarbeiten, Gartenpflege und mehr.">
+<style>
+
+  :root{
+    --color-primary:#1b4332;
+    --color-primary-light:#2d6a4f;
+    --color-secondary:#f4f1ea;
+    --color-secondary-alt:#f9f8f6;
+    --color-bg:#ffffff;
+    --color-text:#1a1a1a;
+    --color-text-soft:#5c5c58;
+    --color-border:#e4e0d6;
+    --color-error:#a13a2f;
+    --color-success:#1b4332;
+    --font-system:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    --max-width:1180px;
+    --radius:14px;
+  }
+
+  *,*::before,*::after{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:var(--font-system);
+    color:var(--color-text);
+    background:var(--color-bg);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.6;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  ul{margin:0;padding:0;list-style:none;}
+  button{font-family:inherit;cursor:pointer;}
+  input,textarea{font-family:inherit;}
+
+  .wrap{
+    max-width:var(--max-width);
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  h1,h2,h3{
+    margin:0;
+    letter-spacing:-0.03em;
+    font-weight:700;
+    line-height:1.1;
+  }
+
+  section{padding:120px 0;}
+  @media(max-width:900px){
+    section{padding:80px 0;}
+    .wrap{padding:0 20px;}
+  }
+
+  /* ---------- HEADER ---------- */
+  header.site-header{
+    position:sticky;
+    top:0;
+    z-index:900;
+    background:rgba(255,255,255,0.85);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--color-border);
+  }
+  .header-inner{
+    max-width:var(--max-width);
+    margin:0 auto;
+    padding:18px 32px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+  }
+  @media(max-width:900px){
+    .header-inner{padding:16px 20px;}
+  }
+  .logo-link{display:flex;align-items:center;}
+  nav.main-nav ul{
+    display:flex;
+    gap:36px;
+  }
+  nav.main-nav a{
+    font-size:15px;
+    font-weight:500;
+    color:var(--color-text);
+    transition:color .25s ease;
+  }
+  nav.main-nav a:hover{color:var(--color-primary);}
+  @media(max-width:800px){
+    nav.main-nav{display:none;}
+  }
+  .btn-outline{
+    display:inline-block;
+    padding:11px 22px;
+    border:1px solid var(--color-primary);
+    color:var(--color-primary);
+    background:transparent;
+    border-radius:999px;
+    font-size:14px;
+    font-weight:600;
+    letter-spacing:0.01em;
+    transition:background .25s ease,color .25s ease;
+    white-space:nowrap;
+  }
+  .btn-outline:hover{
+    background:var(--color-primary);
+    color:#fff;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding-top:88px;
+    padding-bottom:110px;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.05fr 1fr;
+    gap:72px;
+    align-items:start;
+  }
+  @media(max-width:960px){
+    .hero-grid{grid-template-columns:1fr;gap:56px;}
+  }
+  .hero-eyebrow{
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--color-primary-light);
+    margin-bottom:22px;
+    display:block;
+  }
+  .hero h1{
+    font-size:clamp(38px,4.6vw,58px);
+    margin-bottom:24px;
+  }
+  .hero p.lead{
+    font-size:18px;
+    color:var(--color-text-soft);
+    max-width:480px;
+    margin-bottom:36px;
+  }
+  .hero-checks{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    margin-bottom:8px;
+  }
+  .hero-checks li{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:15px;
+    font-weight:500;
+  }
+  .check-dot{
+    width:22px;height:22px;
+    border-radius:50%;
+    background:var(--color-primary);
+    color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-size:12px;
+    flex-shrink:0;
+  }
+
+  /* ---------- CALCULATOR CARD ---------- */
+  .calc-card{
+    background:#fff;
+    border:1px solid var(--color-border);
+    border-radius:var(--radius);
+    box-shadow:0 20px 60px -30px rgba(27,67,50,0.25);
+    padding:36px;
+  }
+  @media(max-width:500px){
+    .calc-card{padding:24px;}
+  }
+  .calc-step-label{
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--color-primary-light);
+    margin-bottom:14px;
+  }
+  .tile-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+    margin-bottom:32px;
+  }
+  @media(max-width:420px){
+    .tile-grid{grid-template-columns:repeat(2,1fr);}
+  }
+  .tile{
+    border:1.5px solid var(--color-border);
+    border-radius:10px;
+    padding:16px 10px;
+    text-align:center;
+    background:var(--color-secondary-alt);
+    transition:border-color .2s ease,background .2s ease,transform .15s ease;
+    position:relative;
+    user-select:none;
+  }
+  .tile:hover{transform:translateY(-2px);}
+  .tile .tile-icon{font-size:22px;margin-bottom:8px;display:block;}
+  .tile .tile-label{font-size:12.5px;font-weight:600;line-height:1.25;}
+  .tile.active{
+    border-color:var(--color-primary);
+    background:#eef4f0;
+  }
+  .tile.active::after{
+    content:"✓";
+    position:absolute;
+    top:6px;right:8px;
+    width:16px;height:16px;
+    background:var(--color-primary);
+    color:#fff;
+    border-radius:50%;
+    font-size:10px;
+    display:flex;align-items:center;justify-content:center;
+  }
+
+  .field-group{margin-bottom:26px;}
+  .field-group label{
+    display:block;
+    font-size:13px;
+    font-weight:600;
+    margin-bottom:8px;
+  }
+  .field-group input[type="number"],
+  .field-group input[type="text"],
+  .field-group input[type="email"],
+  .field-group input[type="tel"]{
+    width:100%;
+    padding:12px 4px;
+    border:none;
+    border-bottom:1.5px solid var(--color-border);
+    background:transparent;
+    font-size:15px;
+    color:var(--color-text);
+    outline:none;
+    transition:border-color .2s ease;
+  }
+  .field-group input:focus{border-bottom-color:var(--color-primary);}
+
+  .checkbox-row{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    margin-bottom:12px;
+    font-size:14px;
+  }
+  .checkbox-row input{
+    margin-top:3px;
+    width:16px;height:16px;
+    accent-color:var(--color-primary);
+    flex-shrink:0;
+  }
+
+  .calc-result-box{
+    background:var(--color-primary);
+    color:#fff;
+    border-radius:10px;
+    padding:20px 22px;
+    margin-bottom:22px;
+  }
+  .calc-result-box .result-label{
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    opacity:0.8;
+    margin-bottom:6px;
+  }
+  .calc-result-box .result-value{
+    font-size:26px;
+    font-weight:700;
+    letter-spacing:-0.02em;
+  }
+
+  .btn-primary{
+    width:100%;
+    padding:16px;
+    background:var(--color-primary);
+    color:#fff;
+    border:none;
+    border-radius:10px;
+    font-size:15.5px;
+    font-weight:600;
+    letter-spacing:0.01em;
+    transition:background .2s ease;
+  }
+  .btn-primary:hover{background:var(--color-primary-light);}
+  .btn-primary:disabled{opacity:0.6;cursor:not-allowed;}
+
+  /* ---------- SERVICES ---------- */
+  .services-head{
+    text-align:center;
+    max-width:600px;
+    margin:0 auto 72px;
+  }
+  .services-head span.eyebrow{
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--color-primary-light);
+    display:block;
+    margin-bottom:16px;
+  }
+  .services-head h2{
+    font-size:clamp(30px,3.4vw,42px);
+  }
+  .services-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:64px;
+  }
+  @media(max-width:900px){
+    .services-grid{grid-template-columns:1fr;gap:48px;}
+  }
+  .service-item h3{
+    font-size:21px;
+    margin-bottom:14px;
+  }
+  .service-item p{
+    color:var(--color-text-soft);
+    font-size:15px;
+    margin:0;
+  }
+  .service-item .index-mark{
+    display:block;
+    font-size:13px;
+    color:var(--color-primary-light);
+    font-weight:700;
+    margin-bottom:18px;
+    letter-spacing:0.05em;
+  }
+
+  /* ---------- CALENDLY ---------- */
+  .calendly-section{
+    background:var(--color-secondary);
+  }
+  .calendly-head{
+    text-align:center;
+    max-width:600px;
+    margin:0 auto 48px;
+  }
+  .calendly-head h2{
+    font-size:clamp(28px,3.2vw,38px);
+  }
+  .calendly-embed-wrap{
+    background:#fff;
+    border-radius:var(--radius);
+    overflow:hidden;
+    border:1px solid var(--color-border);
+  }
+  .calendly-inline-widget{
+    min-width:280px;
+    height:700px;
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact-head{
+    text-align:center;
+    max-width:560px;
+    margin:0 auto 56px;
+  }
+  .contact-head h2{
+    font-size:clamp(30px,3.4vw,42px);
+  }
+  form#contact-form{
+    max-width:560px;
+    margin:0 auto;
+  }
+  #plz-error{
+    display:none;
+    color:var(--color-error);
+    font-size:13px;
+    margin-top:8px;
+    font-weight:500;
+  }
+  #plz-error.show{display:block;}
+
+  .form-feedback{
+    display:none;
+    border-radius:10px;
+    padding:16px 18px;
+    font-size:14.5px;
+    margin-top:20px;
+    font-weight:500;
+  }
+  .form-feedback.show{display:block;}
+  .form-feedback.success{
+    background:#eef4f0;
+    color:var(--color-success);
+    border:1px solid #cfe3d6;
+  }
+  .form-feedback.error{
+    background:#faeceb;
+    color:var(--color-error);
+    border:1px solid #f0cfc9;
+  }
+
+  footer{
+    padding:48px 0;
+    border-top:1px solid var(--color-border);
+    text-align:center;
+    color:var(--color-text-soft);
+    font-size:13.5px;
+  }
+
+  /* ---------- WHATSAPP FLOATING BUTTON ---------- */
+  .wa-float{
+    position:fixed;
+    bottom:26px;
+    right:26px;
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    background:#1b4332;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 10px 30px -8px rgba(27,67,50,0.55);
+    z-index:1000;
+    transition:transform .2s ease;
+  }
+  .wa-float:hover{transform:scale(1.06);}
+  .wa-float svg{width:28px;height:28px;}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;animation:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="#" class="logo-link">
+      <img src="logo.png" alt="GaLaBau Diwold Logo" style="height: 45px; width: auto;">
+    </a>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="#home">Startseite</a></li>
+        <li><a href="#leistungen">Leistungen</a></li>
+        <li><a href="#gartenplaner">Gartenplaner</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </nav>
+    <a href="#kontakt" class="btn-outline">Jetzt anfragen</a>
+  </div>
+</header>
+
+<main id="home">
+
+  <!-- ================= HERO + CALCULATOR ================= -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <span class="hero-eyebrow">GaLaBau Diwold · Pfalz &amp; Rhein-Neckar</span>
+        <h1>Ihr Traumgarten.<br>Unsere Leidenschaft.</h1>
+        <p class="lead">Von der ersten Skizze bis zur letzten Pflasterfuge: Wir gestalten Außenräume, die Bestand haben. Handwerklich präzise, termintreu und mit einem Blick für Details.</p>
+        <ul class="hero-checks">
+          <li><span class="check-dot">✓</span> Kostenlose Erstberatung</li>
+          <li><span class="check-dot">✓</span> Schnelle Rückmeldung innerhalb von 24h</li>
+        </ul>
+      </div>
+
+      <div class="calc-card" id="gartenplaner">
+        <div class="calc-step-label">Schritt 1 — Ihre Leistungen</div>
+        <div class="tile-grid" id="tile-grid">
+          <div class="tile" data-service="pflaster" data-min="90" data-max="130" data-type="area">
+            <span class="tile-icon">▦</span>
+            <span class="tile-label">Pflasterarbeiten</span>
+          </div>
+          <div class="tile" data-service="terrasse" data-min="150" data-max="220" data-type="area">
+            <span class="tile-icon">◱</span>
+            <span class="tile-label">Terrassenbau</span>
+          </div>
+          <div class="tile" data-service="rollrasen" data-min="20" data-max="35" data-type="area">
+            <span class="tile-icon">▤</span>
+            <span class="tile-label">Rollrasen</span>
+          </div>
+          <div class="tile" data-service="erdarbeiten" data-min="800" data-max="1500" data-type="flat">
+            <span class="tile-icon">⛏</span>
+            <span class="tile-label">Erdarbeiten</span>
+          </div>
+          <div class="tile" data-service="hecke" data-min="400" data-max="900" data-type="flat">
+            <span class="tile-icon">❀</span>
+            <span class="tile-label">Hecke &amp; Pflege</span>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label for="flaeche">Schritt 2 — Fläche in m²</label>
+          <input type="number" id="flaeche" name="flaeche" min="0" placeholder="z. B. 45">
+        </div>
+
+        <div class="field-group">
+          <label>Schritt 3 — Zusatzleistungen</label>
+          <div class="checkbox-row">
+            <input type="checkbox" id="opt-aushub" data-surcharge="0.15">
+            <label for="opt-aushub" style="margin:0;font-weight:400;">Aushub &amp; Entsorgung</label>
+          </div>
+          <div class="checkbox-row">
+            <input type="checkbox" id="opt-material" data-surcharge="0.10">
+            <label for="opt-material" style="margin:0;font-weight:400;">Materiallieferung</label>
+          </div>
+          <div class="checkbox-row">
+            <input type="checkbox" id="opt-zufahrt" data-surcharge="0.12">
+            <label for="opt-zufahrt" style="margin:0;font-weight:400;">Schwer zugänglich (z.B. schmale Zufahrt)</label>
+          </div>
+        </div>
+
+        <div class="calc-result-box">
+          <div class="result-label">Unverbindliche Preisspanne</div>
+          <div class="result-value" id="result-value">ca. 0 €</div>
+        </div>
+
+        <button type="button" class="btn-primary" id="calc-cta">Kostenloses Angebot anfordern</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SERVICES ================= -->
+  <section id="leistungen">
+    <div class="wrap">
+      <div class="services-head">
+        <span class="eyebrow">Leistungen</span>
+        <h2>Handwerk, das Ihren Garten trägt</h2>
+      </div>
+      <div class="services-grid">
+        <div class="service-item">
+          <span class="index-mark">Terrassenbau</span>
+          <h3>Terrassenbau</h3>
+          <p>Ob Naturstein, Holz oder Keramik: Wir planen und realisieren Terrassen, die sich harmonisch in Ihr Grundstück einfügen. Fundament, Entwässerung und Belag aus einer Hand, für einen Außenbereich, der Jahrzehnte hält.</p>
+        </div>
+        <div class="service-item">
+          <span class="index-mark">Pflasterarbeiten</span>
+          <h3>Pflasterarbeiten</h3>
+          <p>Einfahrten, Wege und Hofflächen erhalten bei uns ein tragfähiges Fundament und eine saubere Verlegung bis in die letzte Fuge. Wir beraten Sie zu Materialien, die zu Haus und Umgebung passen.</p>
+        </div>
+        <div class="service-item">
+          <span class="index-mark">Gartenpflege</span>
+          <h3>Gartenpflege</h3>
+          <p>Von der Heckenschnittsaison bis zur Rasenpflege kümmern wir uns zuverlässig um Ihren Garten. Regelmäßige Pflege erhält den Wert Ihrer Außenanlage und erspart Ihnen den Aufwand.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CALENDLY ================= -->
+  <section class="calendly-section">
+    <div class="wrap">
+      <div class="calendly-head">
+        <span class="eyebrow" style="font-size:13px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-primary-light);display:block;margin-bottom:16px;">Beratung</span>
+        <h2>Beratungsgespräch direkt online buchen</h2>
+      </div>
+      <div class="calendly-embed-wrap">
+        <!-- Calendly inline widget begin -->
+        <div class="calendly-inline-widget" data-url="https://calendly.com/DEIN-CALENDLY-LINK/beratungsgespraech" style="min-width:280px;height:700px;"></div>
+        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+        <!-- Calendly inline widget end -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section id="kontakt">
+    <div class="wrap">
+      <div class="contact-head">
+        <span style="font-size:13px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-primary-light);display:block;margin-bottom:16px;">Kontakt</span>
+        <h2>Lassen Sie uns Ihr Projekt planen</h2>
+      </div>
+
+      <form id="contact-form" novalidate>
+        <div class="field-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="field-group">
+          <label for="email">E-Mail-Adresse</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="field-group">
+          <label for="telefon">Telefonnummer</label>
+          <input type="tel" id="telefon" name="telefon">
+        </div>
+        <div class="field-group">
+          <label for="plz">Postleitzahl (PLZ)</label>
+          <input type="text" id="plz" name="plz" inputmode="numeric" maxlength="5" required>
+          <div id="plz-error">Leider liegt Ihr Projekt außerhalb unseres aktuellen Einzugsgebiets (50 km um Römerberg).</div>
+        </div>
+        <div class="field-group">
+          <label for="nachricht">Projektdetails</label>
+          <textarea id="nachricht" name="nachricht" rows="5" required style="width:100%;padding:12px 4px;border:none;border-bottom:1.5px solid var(--color-border);background:transparent;font-size:15px;color:var(--color-text);outline:none;resize:vertical;"></textarea>
+        </div>
+
+        <button type="submit" class="btn-primary" id="submit-btn">Anfrage absenden</button>
+
+        <div class="form-feedback" id="form-feedback"></div>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    &copy; <span id="year"></span> GaLaBau Diwold — Inh. Philipp Dachtler · 67354 Römerberg
+  </div>
+</footer>
+
+<!-- WhatsApp Floating Button -->
+<a href="https://wa.me/491234567890" target="_blank" rel="noopener" class="wa-float" aria-label="WhatsApp Kontakt">
+  <svg viewBox="0 0 32 32" fill="#ffffff"><path d="M16.001 2.667c-7.364 0-13.334 5.97-13.334 13.334 0 2.353.617 4.66 1.789 6.686L2.667 29.333l6.79-1.78a13.27 13.27 0 0 0 6.544 1.714h.006c7.363 0 13.333-5.97 13.333-13.333 0-3.562-1.387-6.912-3.906-9.431a13.246 13.246 0 0 0-9.433-3.836zm0 24.4h-.005a11.06 11.06 0 0 1-5.636-1.543l-.404-.24-4.03 1.057 1.076-3.928-.263-.403a11.06 11.06 0 0 1-1.695-5.909c0-6.117 4.978-11.095 11.096-11.095a11.02 11.02 0 0 1 7.845 3.253 11.02 11.02 0 0 1 3.248 7.85c-.003 6.117-4.98 11.095-11.096 11.095zm6.088-8.309c-.334-.167-1.974-.973-2.28-1.084-.306-.111-.529-.166-.751.167-.222.334-.86 1.084-1.055 1.306-.194.223-.389.25-.723.084-.334-.167-1.409-.52-2.684-1.657-.992-.885-1.662-1.978-1.856-2.311-.194-.334-.021-.514.146-.68.15-.15.334-.39.5-.585.167-.195.223-.334.334-.556.111-.223.056-.418-.028-.585-.083-.167-.75-1.81-1.028-2.478-.271-.65-.546-.562-.75-.572l-.639-.011c-.222 0-.584.083-.89.417-.306.334-1.167 1.14-1.167 2.78s1.195 3.226 1.362 3.448c.167.223 2.353 3.593 5.702 5.038.797.344 1.418.55 1.902.704.799.254 1.526.218 2.101.132.641-.096 1.974-.807 2.252-1.587.278-.78.278-1.448.195-1.587-.084-.14-.306-.223-.639-.39z"/></svg>
+</a>
+
+<script>
+(function(){
+
+  // ---------- SERVICE DATA ----------
+  var services = {}; // key -> {min,max,type,active}
+  var extraOptions = [];
+
+  var tiles = document.querySelectorAll('.tile');
+  tiles.forEach(function(tile){
+    tile.addEventListener('click', function(){
+      tile.classList.toggle('active');
+      updateCalculation();
+    });
+  });
+
+  var flaecheInput = document.getElementById('flaeche');
+  flaecheInput.addEventListener('input', updateCalculation);
+
+  var checkboxes = document.querySelectorAll('.field-group input[type="checkbox"]');
+  checkboxes.forEach(function(cb){
+    cb.addEventListener('change', updateCalculation);
+  });
+
+  function formatEuro(value){
+    return Math.round(value).toLocaleString('de-DE');
+  }
+
+  function getSurchargeFactor(){
+    var factor = 1;
+    checkboxes.forEach(function(cb){
+      if(cb.checked){
+        factor += parseFloat(cb.dataset.surcharge);
+      }
+    });
+    return factor;
+  }
+
+  function updateCalculation(){
+    var flaeche = parseFloat(flaecheInput.value) || 0;
+    var minTotal = 0;
+    var maxTotal = 0;
+    var activeTiles = document.querySelectorAll('.tile.active');
+
+    activeTiles.forEach(function(tile){
+      var min = parseFloat(tile.dataset.min);
+      var max = parseFloat(tile.dataset.max);
+      var type = tile.dataset.type;
+
+      if(type === 'area'){
+        minTotal += min * flaeche;
+        maxTotal += max * flaeche;
+      } else {
+        minTotal += min;
+        maxTotal += max;
+      }
+    });
+
+    var factor = getSurchargeFactor();
+    minTotal *= factor;
+    maxTotal *= factor;
+
+    var resultEl = document.getElementById('result-value');
+    if(activeTiles.length === 0 || flaeche === 0 && Array.from(activeTiles).every(function(t){return t.dataset.type === 'area';})){
+      if(minTotal === 0 && maxTotal === 0){
+        resultEl.textContent = 'ca. 0 €';
+        return;
+      }
+    }
+    resultEl.textContent = 'ca. ' + formatEuro(minTotal) + ' € – ' + formatEuro(maxTotal) + ' €';
+  }
+
+  document.getElementById('calc-cta').addEventListener('click', function(){
+    document.getElementById('kontakt').scrollIntoView({behavior:'smooth'});
+  });
+
+  // ---------- FOOTER YEAR ----------
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ---------- PLZ VALIDATION ----------
+  var validPrefixes = ['67','68','69','76'];
+  var plzInput = document.getElementById('plz');
+  var plzError = document.getElementById('plz-error');
+
+  function isPlzValid(value){
+    var digits = (value || '').trim();
+    if(digits.length < 2) return false;
+    var prefix = digits.substring(0,2);
+    return validPrefixes.indexOf(prefix) !== -1;
+  }
+
+  // ---------- FORM SUBMIT (AJAX) ----------
+  var form = document.getElementById('contact-form');
+  var submitBtn = document.getElementById('submit-btn');
+  var feedback = document.getElementById('form-feedback');
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+
+    feedback.className = 'form-feedback';
+    feedback.textContent = '';
+    plzError.classList.remove('show');
+
+    if(!isPlzValid(plzInput.value)){
+      plzError.classList.add('show');
+      plzInput.focus();
+      return;
+    }
+
+    var originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Wird gesendet...';
+    submitBtn.disabled = true;
+
+    var formData = new FormData(form);
+
+    // Gartenplaner-Daten anhängen
+    var selectedServices = [];
+    document.querySelectorAll('.tile.active').forEach(function(tile){
+      selectedServices.push(tile.dataset.service);
+    });
+    formData.append('leistungen', selectedServices.join(', '));
+    formData.append('flaeche_m2', flaecheInput.value || '0');
+
+    var selectedExtras = [];
+    checkboxes.forEach(function(cb){
+      if(cb.checked){
+        selectedExtras.push(cb.nextElementSibling.textContent.trim());
+      }
+    });
+    formData.append('zusatzleistungen', selectedExtras.join(', '));
+    formData.append('preisspanne', document.getElementById('result-value').textContent);
+
+    fetch('senden.php', {
+      method: 'POST',
+      body: formData
+    })
+    .then(function(response){ return response.json(); })
+    .then(function(data){
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+
+      if(data.status === 'success'){
+        feedback.classList.add('show','success');
+        feedback.textContent = data.message;
+        form.reset();
+        document.querySelectorAll('.tile.active').forEach(function(t){ t.classList.remove('active'); });
+        updateCalculation();
+      } else {
+        feedback.classList.add('show','error');
+        feedback.textContent = data.message || 'Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.';
+      }
+    })
+    .catch(function(){
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+      feedback.classList.add('show','error');
+      feedback.textContent = 'Verbindungsfehler. Bitte versuchen Sie es später erneut.';
+    });
+  });
+
+})();
+</script>
+
+</body>
+</html>
