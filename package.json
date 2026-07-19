@@ -1,0 +1,6 @@
+{
+  "name": "galabau-diwold-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Website für GaLaBau Diwold mit Vercel Serverless Function (Resend E-Mail-Versand)"
+}
