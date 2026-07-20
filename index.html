@@ -570,11 +570,162 @@
   }
 
   footer{
-    padding:48px 0;
+    padding:100px 0 40px;
     border-top:1px solid var(--color-border);
-    text-align:center;
+    background:var(--color-secondary);
     color:var(--color-text-soft);
     font-size:13.5px;
+    text-align:left;
+  }
+  .footer-head{margin-bottom:56px;}
+  .footer-head span.eyebrow{
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--color-primary-light);
+    display:block;
+    margin-bottom:16px;
+  }
+  .footer-head h2{
+    font-size:clamp(28px,3.2vw,38px);
+    color:var(--color-text);
+  }
+  .impressum-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:64px;
+    margin-bottom:56px;
+  }
+  @media(max-width:900px){
+    .impressum-grid{grid-template-columns:1fr;gap:40px;}
+  }
+  .impressum-col h3{
+    font-size:14px;
+    font-weight:700;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    color:var(--color-primary);
+    margin:0 0 14px;
+  }
+  .impressum-col h3:not(:first-child){margin-top:32px;}
+  .impressum-col p{
+    font-size:14.5px;
+    line-height:1.7;
+    color:var(--color-text-soft);
+    margin:0 0 4px;
+  }
+  .impressum-link{
+    color:var(--color-primary-light);
+    font-weight:600;
+    transition:color .25s ease;
+  }
+  .impressum-link:hover{
+    color:var(--color-primary);
+    text-decoration:underline;
+  }
+  .footer-social{
+    display:flex;
+    justify-content:center;
+    margin-bottom:32px;
+  }
+  .social-icon-link{
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    border:1px solid var(--color-primary);
+    color:var(--color-primary);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:background .3s cubic-bezier(.16,1,.3,1),color .3s cubic-bezier(.16,1,.3,1),transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s cubic-bezier(.16,1,.3,1);
+  }
+  .social-icon-link:hover{
+    background:var(--color-primary);
+    color:#fff;
+    transform:translateY(-2px);
+    box-shadow:0 10px 24px -10px rgba(27,67,50,0.45);
+  }
+  .social-icon-link svg{width:20px;height:20px;}
+  .footer-bottom{
+    text-align:center;
+    padding-top:32px;
+    border-top:1px solid var(--color-border);
+    font-size:13.5px;
+    color:var(--color-text-soft);
+  }
+
+  /* ---------- IMPRESSUM ---------- */
+  .impressum-section{
+    padding:80px 0 40px;
+    background:var(--color-bg);
+  }
+  .impressum-card{
+    background:#0d0d0e;
+    border-radius:28px;
+    padding:64px 56px;
+  }
+  @media(max-width:700px){
+    .impressum-card{padding:44px 26px;border-radius:20px;}
+  }
+  .impressum-title{
+    color:#fff;
+    font-style:italic;
+    font-weight:800;
+    font-size:clamp(30px,4vw,44px);
+    letter-spacing:-0.01em;
+    margin-bottom:56px;
+  }
+  .impressum-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:56px;
+  }
+  @media(max-width:800px){
+    .impressum-grid{grid-template-columns:1fr;gap:40px;}
+  }
+  .impressum-block{margin-bottom:36px;}
+  .impressum-block:last-child{margin-bottom:0;}
+  .impressum-heading{
+    color:#fff;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    margin-bottom:16px;
+  }
+  .impressum-block p{
+    color:#9a9a97;
+    font-size:15px;
+    line-height:1.65;
+    margin:0 0 4px;
+  }
+  .impressum-block p:last-child{margin-bottom:0;}
+  .impressum-link{
+    color:#e07b3c;
+    text-decoration:none;
+  }
+  .impressum-link:hover{text-decoration:underline;}
+  .impressum-social{
+    display:flex;
+    justify-content:center;
+    margin-top:56px;
+  }
+  .impressum-insta{
+    width:46px;
+    height:46px;
+    border-radius:50%;
+    border:1.5px solid rgba(255,255,255,0.25);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:border-color .3s ease,transform .3s ease,background .3s ease;
+  }
+  .impressum-insta svg{width:20px;height:20px;fill:#fff;}
+  .impressum-insta:hover{
+    border-color:#e07b3c;
+    background:#e07b3c;
+    transform:translateY(-2px);
   }
 
   /* ---------- SCROLL REVEAL ---------- */
@@ -613,7 +764,7 @@
     </nav>
     <div class="header-actions">
       <a href="#kontakt" class="btn-outline">Jetzt anfragen</a>
-      <a href="https://wa.me/4915112769548" target="_blank" rel="noopener" class="btn-outline btn-round-wa" aria-label="WhatsApp Kontakt">
+      <a href="https://wa.me/491234567890" target="_blank" rel="noopener" class="btn-outline btn-round-wa" aria-label="WhatsApp Kontakt">
         <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16.001 2.667c-7.364 0-13.334 5.97-13.334 13.334 0 2.353.617 4.66 1.789 6.686L2.667 29.333l6.79-1.78a13.27 13.27 0 0 0 6.544 1.714h.006c7.363 0 13.333-5.97 13.333-13.333 0-3.562-1.387-6.912-3.906-9.431a13.246 13.246 0 0 0-9.433-3.836zm0 24.4h-.005a11.06 11.06 0 0 1-5.636-1.543l-.404-.24-4.03 1.057 1.076-3.928-.263-.403a11.06 11.06 0 0 1-1.695-5.909c0-6.117 4.978-11.095 11.096-11.095a11.02 11.02 0 0 1 7.845 3.253 11.02 11.02 0 0 1 3.248 7.85c-.003 6.117-4.98 11.095-11.096 11.095zm6.088-8.309c-.334-.167-1.974-.973-2.28-1.084-.306-.111-.529-.166-.751.167-.222.334-.86 1.084-1.055 1.306-.194.223-.389.25-.723.084-.334-.167-1.409-.52-2.684-1.657-.992-.885-1.662-1.978-1.856-2.311-.194-.334-.021-.514.146-.68.15-.15.334-.39.5-.585.167-.195.223-.334.334-.556.111-.223.056-.418-.028-.585-.083-.167-.75-1.81-1.028-2.478-.271-.65-.546-.562-.75-.572l-.639-.011c-.222 0-.584.083-.89.417-.306.334-1.167 1.14-1.167 2.78s1.195 3.226 1.362 3.448c.167.223 2.353 3.593 5.702 5.038.797.344 1.418.55 1.902.704.799.254 1.526.218 2.101.132.641-.096 1.974-.807 2.252-1.587.278-.78.278-1.448.195-1.587-.084-.14-.306-.223-.639-.39z"/></svg>
       </a>
     </div>
@@ -812,9 +963,59 @@
 
 </main>
 
-<footer>
+<footer id="impressum">
   <div class="wrap">
-    &copy; <span id="year"></span> GaLaBau Diwold — Inh. Philipp Diwold · 67354 Römerberg
+    <div class="footer-head reveal">
+      <span class="eyebrow">Rechtliches</span>
+      <h2>Impressum.</h2>
+    </div>
+
+    <div class="impressum-grid reveal">
+      <div class="impressum-col">
+        <h3>Angaben gem. § 5 TMG</h3>
+        <p>
+          Max Mustermann<br>
+          Musterstraße 12<br>
+          12345 Musterstadt<br>
+          Deutschland
+        </p>
+        <p><a href="#" class="impressum-link">www.galabau-diwold.de</a></p>
+
+        <h3>Vertretungsberechtigter Geschäftsführer</h3>
+        <p>Philipp Diwold</p>
+
+        <h3>Kontakt</h3>
+        <p>
+          E-Mail: <a href="mailto:info@musterfirma.de" class="impressum-link">info@musterfirma.de</a><br>
+          Telefon: +49 123 4567890
+        </p>
+      </div>
+
+      <div class="impressum-col">
+        <h3>Streitbeilegung</h3>
+        <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit: <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener" class="impressum-link">ec.europa.eu/consumers/odr</a>.</p>
+
+        <h3>Haftung für Inhalte</h3>
+        <p>Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen.</p>
+
+        <h3>Urheberrecht</h3>
+        <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung bedarf der schriftlichen Zustimmung.</p>
+      </div>
+    </div>
+
+    <div class="footer-social reveal">
+      <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram" class="social-icon-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+          <circle cx="12" cy="12" r="4.2"></circle>
+          <circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"></circle>
+        </svg>
+      </a>
+    </div>
+
+    <div class="footer-bottom">
+      &copy; <span id="year"></span> GaLaBau Diwold — Inh. Philipp Diwold · 67354 Römerberg
+    </div>
   </div>
 </footer>
 
