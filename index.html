@@ -105,18 +105,34 @@
     font-size:14px;
     font-weight:600;
     letter-spacing:0.01em;
-    transition:background .25s ease,color .25s ease;
+    transition:background .3s cubic-bezier(.16,1,.3,1),color .3s cubic-bezier(.16,1,.3,1),transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s cubic-bezier(.16,1,.3,1);
     white-space:nowrap;
   }
   .btn-outline:hover{
     background:var(--color-primary);
     color:#fff;
+    transform:translateY(-2px);
+    box-shadow:0 10px 24px -10px rgba(27,67,50,0.45);
+  }
+  .btn-outline:active{
+    transform:translateY(0);
   }
 
   /* ---------- HERO ---------- */
   .hero{
     padding-top:88px;
     padding-bottom:110px;
+    overflow:hidden;
+  }
+  @keyframes heroFadeUp{
+    from{opacity:0;transform:translateY(24px);}
+    to{opacity:1;transform:translateY(0);}
+  }
+  .hero-copy{
+    animation:heroFadeUp .9s cubic-bezier(.16,1,.3,1) both;
+  }
+  .hero .calc-card{
+    animation:heroFadeUp .9s cubic-bezier(.16,1,.3,1) .15s both;
   }
   .hero-grid{
     display:grid;
@@ -176,6 +192,10 @@
     border-radius:var(--radius);
     box-shadow:0 20px 60px -30px rgba(27,67,50,0.25);
     padding:36px;
+    transition:box-shadow .4s ease;
+  }
+  .calc-card:hover{
+    box-shadow:0 28px 70px -28px rgba(27,67,50,0.32);
   }
   @media(max-width:500px){
     .calc-card{padding:24px;}
@@ -203,11 +223,15 @@
     padding:16px 10px;
     text-align:center;
     background:var(--color-secondary-alt);
-    transition:border-color .2s ease,background .2s ease,transform .15s ease;
+    transition:border-color .3s cubic-bezier(.16,1,.3,1),background .3s cubic-bezier(.16,1,.3,1),transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s cubic-bezier(.16,1,.3,1);
     position:relative;
     user-select:none;
+    cursor:pointer;
   }
-  .tile:hover{transform:translateY(-2px);}
+  .tile:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 24px -14px rgba(27,67,50,0.35);
+  }
   .tile .tile-icon{font-size:22px;margin-bottom:8px;display:block;}
   .tile .tile-label{font-size:12.5px;font-weight:600;line-height:1.25;}
   .tile.active{
@@ -293,9 +317,16 @@
     font-size:15.5px;
     font-weight:600;
     letter-spacing:0.01em;
-    transition:background .2s ease;
+    transition:background .3s cubic-bezier(.16,1,.3,1),transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s cubic-bezier(.16,1,.3,1);
   }
-  .btn-primary:hover{background:var(--color-primary-light);}
+  .btn-primary:hover:not(:disabled){
+    background:var(--color-primary-light);
+    transform:translateY(-2px);
+    box-shadow:0 14px 30px -14px rgba(27,67,50,0.55);
+  }
+  .btn-primary:active:not(:disabled){
+    transform:translateY(0);
+  }
   .btn-primary:disabled{opacity:0.6;cursor:not-allowed;}
 
   /* ---------- SERVICES ---------- */
@@ -324,9 +355,19 @@
   @media(max-width:900px){
     .services-grid{grid-template-columns:1fr;gap:48px;}
   }
+  .service-item{
+    transition:transform .4s cubic-bezier(.16,1,.3,1);
+  }
+  .service-item:hover{
+    transform:translateY(-6px);
+  }
   .service-item h3{
     font-size:21px;
     margin-bottom:14px;
+    transition:color .3s ease;
+  }
+  .service-item:hover h3{
+    color:var(--color-primary);
   }
   .service-item p{
     color:var(--color-text-soft);
@@ -451,14 +492,30 @@
     justify-content:center;
     box-shadow:0 10px 30px -8px rgba(27,67,50,0.55);
     z-index:1000;
-    transition:transform .2s ease;
+    transition:transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s cubic-bezier(.16,1,.3,1);
   }
-  .wa-float:hover{transform:scale(1.06);}
+  .wa-float:hover{
+    transform:scale(1.08) translateY(-2px);
+    box-shadow:0 16px 36px -10px rgba(27,67,50,0.65);
+  }
   .wa-float svg{width:28px;height:28px;}
+
+  /* ---------- SCROLL REVEAL ---------- */
+  .reveal{
+    opacity:0;
+    transform:translateY(32px);
+    transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1);
+    will-change:opacity,transform;
+  }
+  .reveal.is-visible{
+    opacity:1;
+    transform:translateY(0);
+  }
 
   @media (prefers-reduced-motion: reduce){
     html{scroll-behavior:auto;}
     *{transition:none !important;animation:none !important;}
+    .reveal{opacity:1;transform:none;}
   }
 </style>
 </head>
@@ -555,44 +612,44 @@
   <!-- ================= SERVICES ================= -->
   <section id="leistungen">
     <div class="wrap">
-      <div class="services-head">
+      <div class="services-head reveal">
         <span class="eyebrow">Leistungen</span>
         <h2>Handwerk, das Ihren Garten trägt</h2>
       </div>
-      <div class="services-grid">
-        <div class="service-item">
+      <div class="services-grid" id="services-grid">
+        <div class="service-item reveal">
           <span class="index-mark">Terrassenbau</span>
           <h3>Terrassenbau</h3>
           <p>Ob Naturstein, Holz oder Keramik: Wir planen und realisieren Terrassen, die sich harmonisch in Ihr Grundstück einfügen. Fundament, Entwässerung und Belag aus einer Hand, für einen Außenbereich, der Jahrzehnte hält.</p>
         </div>
-        <div class="service-item">
+        <div class="service-item reveal">
           <span class="index-mark">Pflasterarbeiten</span>
           <h3>Pflasterarbeiten</h3>
           <p>Einfahrten, Wege und Hofflächen erhalten bei uns ein tragfähiges Fundament und eine saubere Verlegung bis in die letzte Fuge — in Naturstein oder Betonpflaster, ganz nach Ihrem Geschmack.</p>
         </div>
-        <div class="service-item">
+        <div class="service-item reveal">
           <span class="index-mark">Wege &amp; Treppen</span>
           <h3>Wege, Treppen &amp; Hangbefestigung</h3>
           <p>Wir erschließen auch anspruchsvolle Grundstücke: sichere Treppenanlagen, wetterfeste Wege und stabile Hangbefestigungen, die Ihr Gelände dauerhaft in Form halten.</p>
         </div>
-        <div class="service-item">
+        <div class="service-item reveal">
           <span class="index-mark">Pflanzung &amp; Rasen</span>
           <h3>Pflanzkonzepte &amp; Rasenflächen</h3>
           <p>Von individuellen Pflanzkonzepten bis zu Roll- oder Saatrasen: Wir gestalten Grünflächen, die zu Standort und Klima passen und Jahr für Jahr schöner werden.</p>
         </div>
-        <div class="service-item">
+        <div class="service-item reveal">
           <span class="index-mark">Zäune &amp; Wasser</span>
           <h3>Zäune, Hochbeete &amp; Teichanlagen</h3>
           <p>Zäune für Sicht- und Privatsphäre, Hochbeete für den eigenen Anbau, Teich- und Bachläufe als lebendiger Mittelpunkt Ihres Gartens — alles aus einer Hand geplant und gebaut.</p>
         </div>
-        <div class="service-item">
+        <div class="service-item reveal">
           <span class="index-mark">Pflege &amp; Nachhaltigkeit</span>
           <h3>Gartenpflege &amp; Nachhaltigkeit</h3>
           <p>Regelmäßige Pflege erhält den Wert Ihrer Außenanlage. Auf Wunsch integrieren wir Regenwassermanagement und insektenfreundliche Bepflanzung für einen Garten, der auch der Umwelt guttut.</p>
         </div>
       </div>
 
-      <div class="philosophy-block">
+      <div class="philosophy-block reveal">
         <p>Qualität vor Quantität: Wir planen transparent, kalkulieren fair und setzen termintreu um — mit geschultem Team, hochwertigen Materialien, sauberen Baustellen und klarer Kommunikation.</p>
         <a href="#kontakt" class="btn-outline philosophy-cta">Unverbindlich über Ihr Projekt sprechen</a>
       </div>
@@ -602,11 +659,11 @@
   <!-- ================= CALENDLY ================= -->
   <section class="calendly-section">
     <div class="wrap">
-      <div class="calendly-head">
+      <div class="calendly-head reveal">
         <span class="eyebrow" style="font-size:13px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-primary-light);display:block;margin-bottom:16px;">Beratung</span>
         <h2>Beratungsgespräch direkt online buchen</h2>
       </div>
-      <div class="calendly-embed-wrap">
+      <div class="calendly-embed-wrap reveal">
         <!-- Calendly inline widget begin -->
         <div class="calendly-inline-widget" data-url="https://calendly.com/DEIN-CALENDLY-LINK/beratungsgespraech" style="min-width:280px;height:700px;"></div>
         <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
@@ -618,12 +675,12 @@
   <!-- ================= CONTACT ================= -->
   <section id="kontakt">
     <div class="wrap">
-      <div class="contact-head">
+      <div class="contact-head reveal">
         <span style="font-size:13px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-primary-light);display:block;margin-bottom:16px;">Kontakt</span>
         <h2>Lassen Sie uns Ihr Projekt planen</h2>
       </div>
 
-      <form id="contact-form" novalidate>
+      <form id="contact-form" class="reveal" novalidate>
         <div class="field-group">
           <label for="name">Name</label>
           <input type="text" id="name" name="name" required>
@@ -743,6 +800,38 @@
 
   // ---------- FOOTER YEAR ----------
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ---------- SCROLL REVEAL ----------
+  (function(){
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Gestaffelte Verzögerung für die Leistungs-Kacheln
+    var servicesGrid = document.getElementById('services-grid');
+    if(servicesGrid){
+      var serviceItems = servicesGrid.querySelectorAll('.reveal');
+      serviceItems.forEach(function(item, i){
+        item.style.transitionDelay = (i * 90) + 'ms';
+      });
+    }
+
+    var revealEls = document.querySelectorAll('.reveal');
+
+    if(reduceMotion || typeof IntersectionObserver === 'undefined'){
+      revealEls.forEach(function(el){ el.classList.add('is-visible'); });
+      return;
+    }
+
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+    revealEls.forEach(function(el){ observer.observe(el); });
+  })();
 
   // ---------- PLZ VALIDATION ----------
   var validPrefixes = ['67','68','69','76'];
