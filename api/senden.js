@@ -99,10 +99,7 @@ module.exports = async (req, res) => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        // Solange keine eigene Domain bei Resend verifiziert ist, MUSS hier
-        // "onboarding@resend.dev" stehen. Sobald eine Domain verifiziert ist,
-        // kannst du z.B. "anfrage@galabau-diwold.de" verwenden.
-        from: 'GaLaBau Diwold Website <onboarding@resend.dev>',
+        from: 'GaLaBau Diwold Website <anfrage@galabau-diwold.de>',
         to: [EMPFAENGER],
         reply_to: email,
         subject: 'Neue Anfrage über die Website – GaLaBau Diwold',
