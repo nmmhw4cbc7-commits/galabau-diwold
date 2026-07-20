@@ -8,7 +8,7 @@
 const VALID_PLZ_PREFIXES = ['67', '68', '69', '76'];
 
 // Ziel-E-Mail-Adresse, an die Anfragen gehen
-const EMPFAENGER = 'philippdachtler01@gmail.com';
+const EMPFAENGER = 'info@galabau-diwold.de';
 
 // Bereinigt Text-Eingaben (verhindert einfache HTML/Skript-Injektion)
 function cleanInput(value) {
