@@ -564,6 +564,96 @@
     color:var(--color-success);
     border:1px solid #cfe3d6;
   }
+  /* ---------- Bild-Upload (Drag & Drop) ---------- */
+  .upload-dropzone{
+    border:1.5px dashed var(--color-border);
+    border-radius:var(--radius);
+    padding:28px 20px;
+    text-align:center;
+    cursor:pointer;
+    background:var(--color-secondary-alt);
+    transition:border-color .3s cubic-bezier(.16,1,.3,1),background .3s cubic-bezier(.16,1,.3,1);
+  }
+  .upload-dropzone:hover,
+  .upload-dropzone.dragover{
+    border-color:var(--color-primary-light);
+    background:#eef4f0;
+  }
+  .upload-dropzone-text{
+    font-size:14.5px;
+    color:var(--color-text-soft);
+    margin:0;
+  }
+  .upload-dropzone-text strong{
+    color:var(--color-primary);
+  }
+  .upload-hint{
+    font-size:12.5px;
+    color:var(--color-text-soft);
+    margin-top:6px;
+  }
+  .upload-input{
+    display:none;
+  }
+  .upload-previews{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-top:16px;
+  }
+  .upload-preview-item{
+    position:relative;
+    width:84px;
+    height:84px;
+    border-radius:10px;
+    overflow:hidden;
+    border:1px solid var(--color-border);
+    background:#fff;
+  }
+  .upload-preview-item img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .upload-preview-remove{
+    position:absolute;
+    top:4px;
+    right:4px;
+    width:20px;
+    height:20px;
+    border-radius:50%;
+    background:rgba(26,26,26,0.65);
+    color:#fff;
+    border:none;
+    font-size:13px;
+    line-height:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    padding:0;
+  }
+  .upload-preview-remove:hover{background:var(--color-error);}
+  .upload-preview-status{
+    position:absolute;
+    inset:0;
+    background:rgba(255,255,255,0.75);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:11px;
+    color:var(--color-text-soft);
+  }
+  .upload-error{
+    display:none;
+    color:var(--color-error);
+    font-size:13px;
+    margin-top:8px;
+    font-weight:500;
+  }
+  .upload-error.show{display:block;}
+
   .form-feedback.error{
     background:#faeceb;
     color:var(--color-error);
@@ -939,6 +1029,17 @@
           <textarea id="nachricht" name="nachricht" rows="5" required style="width:100%;padding:12px 4px;border:none;border-bottom:1.5px solid var(--color-border);background:transparent;font-size:15px;color:var(--color-text);outline:none;resize:vertical;"></textarea>
         </div>
 
+        <div class="field-group">
+          <label>Fotos zum Projekt (optional)</label>
+          <div class="upload-dropzone" id="upload-dropzone" tabindex="0" role="button" aria-label="Bilder hochladen">
+            <p class="upload-dropzone-text"><strong>Bilder hierher ziehen</strong> oder klicken zum Auswählen</p>
+            <p class="upload-hint">JPG, PNG oder WEBP · max. 5 Bilder · werden automatisch komprimiert</p>
+            <input type="file" id="upload-input" class="upload-input" accept="image/png,image/jpeg,image/webp" multiple>
+          </div>
+          <div id="upload-error" class="upload-error"></div>
+          <div class="upload-previews" id="upload-previews"></div>
+        </div>
+
         <button type="submit" class="btn-primary" id="submit-btn">Anfrage absenden</button>
 
         <div class="form-feedback" id="form-feedback"></div>
@@ -1109,6 +1210,168 @@
     return validPrefixes.indexOf(prefix) !== -1;
   }
 
+  // ---------- BILD-UPLOAD (Drag & Drop + Komprimierung) ----------
+  var MAX_BILDER = 5;
+  var MAX_KANTENLAENGE = 1600;   // px, längste Seite nach Komprimierung
+  var JPEG_QUALITAET = 0.72;
+  var ausgewaehlteBilder = [];   // { id, dateiname, contentType, base64, status }
+
+  var dropzone = document.getElementById('upload-dropzone');
+  var fileInput = document.getElementById('upload-input');
+  var previewsWrap = document.getElementById('upload-previews');
+  var uploadError = document.getElementById('upload-error');
+
+  function zeigeUploadFehler(msg){
+    uploadError.textContent = msg;
+    uploadError.classList.add('show');
+  }
+  function verstecktUploadFehler(){
+    uploadError.classList.remove('show');
+    uploadError.textContent = '';
+  }
+
+  function komprimiereBild(file){
+    return new Promise(function(resolve, reject){
+      var img = new Image();
+      var reader = new FileReader();
+
+      reader.onload = function(e){
+        img.onload = function(){
+          var breite = img.width;
+          var hoehe = img.height;
+
+          if(breite > hoehe && breite > MAX_KANTENLAENGE){
+            hoehe = Math.round(hoehe * (MAX_KANTENLAENGE / breite));
+            breite = MAX_KANTENLAENGE;
+          } else if(hoehe > MAX_KANTENLAENGE){
+            breite = Math.round(breite * (MAX_KANTENLAENGE / hoehe));
+            hoehe = MAX_KANTENLAENGE;
+          }
+
+          var canvas = document.createElement('canvas');
+          canvas.width = breite;
+          canvas.height = hoehe;
+          var ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, breite, hoehe);
+
+          var dataUrl = canvas.toDataURL('image/jpeg', JPEG_QUALITAET);
+          resolve(dataUrl);
+        };
+        img.onerror = function(){ reject(new Error('Bild konnte nicht gelesen werden.')); };
+        img.src = e.target.result;
+      };
+      reader.onerror = function(){ reject(new Error('Datei konnte nicht gelesen werden.')); };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function renderPreviews(){
+    previewsWrap.innerHTML = '';
+    ausgewaehlteBilder.forEach(function(bild){
+      var item = document.createElement('div');
+      item.className = 'upload-preview-item';
+
+      var img = document.createElement('img');
+      img.src = bild.base64 || '';
+      item.appendChild(img);
+
+      if(bild.status === 'wird komprimiert'){
+        var status = document.createElement('div');
+        status.className = 'upload-preview-status';
+        status.textContent = 'Komprimiere…';
+        item.appendChild(status);
+      }
+
+      var removeBtn = document.createElement('button');
+      removeBtn.type = 'button';
+      removeBtn.className = 'upload-preview-remove';
+      removeBtn.setAttribute('aria-label', 'Bild entfernen');
+      removeBtn.textContent = '×';
+      removeBtn.addEventListener('click', function(){
+        ausgewaehlteBilder = ausgewaehlteBilder.filter(function(b){ return b.id !== bild.id; });
+        renderPreviews();
+      });
+      item.appendChild(removeBtn);
+
+      previewsWrap.appendChild(item);
+    });
+  }
+
+  function dateienHinzufuegen(fileList){
+    verstecktUploadFehler();
+    var dateien = Array.prototype.slice.call(fileList);
+
+    var erlaubteTypen = ['image/png', 'image/jpeg', 'image/webp'];
+    var freiePlaetze = MAX_BILDER - ausgewaehlteBilder.length;
+
+    if(freiePlaetze <= 0){
+      zeigeUploadFehler('Es können maximal ' + MAX_BILDER + ' Bilder hinzugefügt werden.');
+      return;
+    }
+
+    var zuVerarbeiten = dateien.filter(function(file){
+      if(erlaubteTypen.indexOf(file.type) === -1){
+        zeigeUploadFehler('Nur JPG, PNG oder WEBP werden unterstützt.');
+        return false;
+      }
+      return true;
+    }).slice(0, freiePlaetze);
+
+    if(dateien.length > zuVerarbeiten.length && erlaubteTypen.indexOf(dateien[0].type) !== -1){
+      zeigeUploadFehler('Es können maximal ' + MAX_BILDER + ' Bilder hinzugefügt werden. Einige Dateien wurden nicht übernommen.');
+    }
+
+    zuVerarbeiten.forEach(function(file){
+      var id = 'img_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6);
+      var eintrag = { id: id, dateiname: file.name, contentType: 'image/jpeg', base64: '', status: 'wird komprimiert' };
+      ausgewaehlteBilder.push(eintrag);
+      renderPreviews();
+
+      komprimiereBild(file).then(function(dataUrl){
+        eintrag.base64 = dataUrl;
+        eintrag.status = 'fertig';
+        renderPreviews();
+      }).catch(function(){
+        ausgewaehlteBilder = ausgewaehlteBilder.filter(function(b){ return b.id !== id; });
+        zeigeUploadFehler('"' + file.name + '" konnte nicht verarbeitet werden.');
+        renderPreviews();
+      });
+    });
+  }
+
+  dropzone.addEventListener('click', function(){ fileInput.click(); });
+  dropzone.addEventListener('keydown', function(e){
+    if(e.key === 'Enter' || e.key === ' '){
+      e.preventDefault();
+      fileInput.click();
+    }
+  });
+
+  fileInput.addEventListener('change', function(){
+    dateienHinzufuegen(fileInput.files);
+    fileInput.value = '';
+  });
+
+  ['dragenter', 'dragover'].forEach(function(evtName){
+    dropzone.addEventListener(evtName, function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      dropzone.classList.add('dragover');
+    });
+  });
+  ['dragleave', 'drop'].forEach(function(evtName){
+    dropzone.addEventListener(evtName, function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      dropzone.classList.remove('dragover');
+    });
+  });
+  dropzone.addEventListener('drop', function(e){
+    if(e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length){
+      dateienHinzufuegen(e.dataTransfer.files);
+    }
+  });
+
   // ---------- FORM SUBMIT (AJAX) ----------
   var form = document.getElementById('contact-form');
   var submitBtn = document.getElementById('submit-btn');
@@ -1127,6 +1390,11 @@
       return;
     }
 
+    if(ausgewaehlteBilder.some(function(b){ return b.status === 'wird komprimiert'; })){
+      zeigeUploadFehler('Bitte warten Sie, bis alle Bilder verarbeitet wurden.');
+      return;
+    }
+
     var originalText = submitBtn.textContent;
     submitBtn.textContent = 'Wird gesendet...';
     submitBtn.disabled = true;
@@ -1137,6 +1405,8 @@
       selectedServices.push(tile.dataset.service);
     });
 
+    var bilderFertig = ausgewaehlteBilder.filter(function(b){ return b.status === 'fertig' && b.base64; });
+
     var payload = {
       name: document.getElementById('name').value,
       email: document.getElementById('email').value,
@@ -1145,7 +1415,14 @@
       nachricht: document.getElementById('nachricht').value,
       leistungen: selectedServices.join(', '),
       flaeche_m2: flaecheInput.value || '0',
-      preisspanne: document.getElementById('result-value').textContent
+      preisspanne: document.getElementById('result-value').textContent,
+      bilder: bilderFertig.map(function(b, i){
+        return {
+          dateiname: (b.dateiname || ('bild-' + (i + 1))).replace(/\.[^/.]+$/, '') + '.jpg',
+          contentType: b.contentType,
+          base64: (b.base64 || '').split(',')[1] || ''
+        };
+      })
     };
 
     fetch('/api/senden', {
@@ -1164,6 +1441,9 @@
         form.reset();
         document.querySelectorAll('.tile.active').forEach(function(t){ t.classList.remove('active'); });
         updateCalculation();
+        ausgewaehlteBilder = [];
+        renderPreviews();
+        verstecktUploadFehler();
       } else {
         feedback.classList.add('show','error');
         feedback.textContent = data.message || 'Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.';
