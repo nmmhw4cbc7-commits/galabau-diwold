@@ -10,6 +10,42 @@ const VALID_PLZ_PREFIXES = ['67', '68', '69', '76'];
 // Ziel-E-Mail-Adresse, an die Anfragen gehen
 const EMPFAENGER = 'info@galabau-diwold.de';
 
+// ---------- Bild-Anhänge: Konfiguration & Validierung ----------
+const MAX_BILDER = 5;
+const MAX_BILD_BYTES = 5 * 1024 * 1024; // 5 MB pro Bild (nach Base64-Dekodierung)
+const ERLAUBTE_CONTENT_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
+
+// Prüft und bereinigt die vom Client gesendeten Bild-Anhänge.
+// Gibt ein Array von { filename, content (Base64), content_type } für Resend zurück.
+function verarbeiteBildAnhaenge(bilder) {
+  if (!Array.isArray(bilder) || bilder.length === 0) return [];
+
+  return bilder
+    .slice(0, MAX_BILDER)
+    .filter((bild) => {
+      if (!bild || typeof bild !== 'object') return false;
+      if (!ERLAUBTE_CONTENT_TYPES.includes(bild.contentType)) return false;
+      if (typeof bild.base64 !== 'string' || bild.base64.length === 0) return false;
+
+      // Grobe Größenprüfung anhand der Base64-Länge (Base64 ist ca. 4/3 der Originalgröße)
+      const geschaetzteBytes = bild.base64.length * 0.75;
+      if (geschaetzteBytes > MAX_BILD_BYTES) return false;
+
+      return true;
+    })
+    .map((bild, index) => {
+      const sicheresDateiname = cleanInput(bild.dateiname || `bild-${index + 1}.jpg`)
+        .replace(/[^a-zA-Z0-9._-]/g, '_')
+        .substring(0, 100) || `bild-${index + 1}.jpg`;
+
+      return {
+        filename: sicheresDateiname,
+        content: bild.base64,
+        content_type: bild.contentType
+      };
+    });
+}
+
 // Bereinigt Text-Eingaben (verhindert einfache HTML/Skript-Injektion)
 function cleanInput(value) {
   if (typeof value !== 'string') return '';
@@ -43,6 +79,9 @@ module.exports = async (req, res) => {
     const flaeche = cleanInput(body.flaeche_m2);
     const zusatzleistungen = cleanInput(body.zusatzleistungen);
     const preisspanne = cleanInput(body.preisspanne);
+
+    // Bild-Anhänge aus dem Kontaktformular (Drag & Drop, bereits im Browser komprimiert)
+    const bildAnhaenge = verarbeiteBildAnhaenge(body.bilder);
 
     // Pflichtfelder prüfen
     if (!name || !email || !isValidEmail(email) || !nachricht) {
@@ -86,6 +125,12 @@ module.exports = async (req, res) => {
       `Zusatzleistungen:         ${zusatzleistungen || '(keine Auswahl)'}`,
       `Errechnete Preisspanne:   ${preisspanne || '(nicht berechnet)'}`,
       '',
+      'FOTOS',
+      '--------------------------------------------------------',
+      bildAnhaenge.length > 0
+        ? `${bildAnhaenge.length} Foto(s) im Anhang dieser E-Mail.`
+        : '(keine Fotos hochgeladen)',
+      '',
       '========================================================',
       'Diese Nachricht wurde automatisch über das Kontaktformular',
       'auf der Website von GaLaBau Diwold generiert.'
@@ -103,7 +148,8 @@ module.exports = async (req, res) => {
         to: [EMPFAENGER],
         reply_to: email,
         subject: 'Neue Anfrage über die Website – GaLaBau Diwold',
-        text: textBody
+        text: textBody,
+        ...(bildAnhaenge.length > 0 ? { attachments: bildAnhaenge } : {})
       })
     });
 
