@@ -910,6 +910,17 @@
           <input type="number" id="flaeche" name="flaeche" min="0" placeholder="z. B. 45">
         </div>
 
+        <div class="field-group">
+          <label>Schritt 3 — Bilder hochladen von Ihrem Garten (optional)</label>
+          <div class="upload-dropzone" id="upload-dropzone-calc" tabindex="0" role="button" aria-label="Bilder hochladen">
+            <p class="upload-dropzone-text"><strong>Bilder hierher ziehen</strong> oder klicken zum Auswählen</p>
+            <p class="upload-hint">JPG, PNG oder WEBP · max. 5 Bilder · werden automatisch komprimiert</p>
+            <input type="file" id="upload-input-calc" class="upload-input" accept="image/png,image/jpeg,image/webp" multiple>
+          </div>
+          <div id="upload-error-calc" class="upload-error"></div>
+          <div class="upload-previews" id="upload-previews-calc"></div>
+        </div>
+
         <div class="calc-result-box">
           <div class="result-label">Unverbindliche Preisspanne</div>
           <div class="result-value" id="result-value">ca. 0 €</div>
@@ -1210,24 +1221,39 @@
     return validPrefixes.indexOf(prefix) !== -1;
   }
 
-  // ---------- BILD-UPLOAD (Drag & Drop + Komprimierung) ----------
+  // ---------- BILD-UPLOAD (Drag & Drop + Komprimierung, mehrere synchronisierte Felder) ----------
   var MAX_BILDER = 5;
   var MAX_KANTENLAENGE = 1600;   // px, längste Seite nach Komprimierung
   var JPEG_QUALITAET = 0.72;
   var ausgewaehlteBilder = [];   // { id, dateiname, contentType, base64, status }
 
-  var dropzone = document.getElementById('upload-dropzone');
-  var fileInput = document.getElementById('upload-input');
-  var previewsWrap = document.getElementById('upload-previews');
-  var uploadError = document.getElementById('upload-error');
+  // Beide Upload-Felder (oben im Rechner & unten im Kontaktformular) teilen sich denselben Zustand.
+  var uploadInstanzen = [
+    {
+      dropzone: document.getElementById('upload-dropzone-calc'),
+      fileInput: document.getElementById('upload-input-calc'),
+      previewsWrap: document.getElementById('upload-previews-calc'),
+      uploadError: document.getElementById('upload-error-calc')
+    },
+    {
+      dropzone: document.getElementById('upload-dropzone'),
+      fileInput: document.getElementById('upload-input'),
+      previewsWrap: document.getElementById('upload-previews'),
+      uploadError: document.getElementById('upload-error')
+    }
+  ];
 
   function zeigeUploadFehler(msg){
-    uploadError.textContent = msg;
-    uploadError.classList.add('show');
+    uploadInstanzen.forEach(function(inst){
+      inst.uploadError.textContent = msg;
+      inst.uploadError.classList.add('show');
+    });
   }
   function verstecktUploadFehler(){
-    uploadError.classList.remove('show');
-    uploadError.textContent = '';
+    uploadInstanzen.forEach(function(inst){
+      inst.uploadError.classList.remove('show');
+      inst.uploadError.textContent = '';
+    });
   }
 
   function komprimiereBild(file){
@@ -1265,35 +1291,38 @@
     });
   }
 
+  // Rendert den gemeinsamen Zustand `ausgewaehlteBilder` in ALLE Vorschau-Container gleichzeitig.
   function renderPreviews(){
-    previewsWrap.innerHTML = '';
-    ausgewaehlteBilder.forEach(function(bild){
-      var item = document.createElement('div');
-      item.className = 'upload-preview-item';
+    uploadInstanzen.forEach(function(inst){
+      inst.previewsWrap.innerHTML = '';
+      ausgewaehlteBilder.forEach(function(bild){
+        var item = document.createElement('div');
+        item.className = 'upload-preview-item';
 
-      var img = document.createElement('img');
-      img.src = bild.base64 || '';
-      item.appendChild(img);
+        var img = document.createElement('img');
+        img.src = bild.base64 || '';
+        item.appendChild(img);
 
-      if(bild.status === 'wird komprimiert'){
-        var status = document.createElement('div');
-        status.className = 'upload-preview-status';
-        status.textContent = 'Komprimiere…';
-        item.appendChild(status);
-      }
+        if(bild.status === 'wird komprimiert'){
+          var status = document.createElement('div');
+          status.className = 'upload-preview-status';
+          status.textContent = 'Komprimiere…';
+          item.appendChild(status);
+        }
 
-      var removeBtn = document.createElement('button');
-      removeBtn.type = 'button';
-      removeBtn.className = 'upload-preview-remove';
-      removeBtn.setAttribute('aria-label', 'Bild entfernen');
-      removeBtn.textContent = '×';
-      removeBtn.addEventListener('click', function(){
-        ausgewaehlteBilder = ausgewaehlteBilder.filter(function(b){ return b.id !== bild.id; });
-        renderPreviews();
+        var removeBtn = document.createElement('button');
+        removeBtn.type = 'button';
+        removeBtn.className = 'upload-preview-remove';
+        removeBtn.setAttribute('aria-label', 'Bild entfernen');
+        removeBtn.textContent = '×';
+        removeBtn.addEventListener('click', function(){
+          ausgewaehlteBilder = ausgewaehlteBilder.filter(function(b){ return b.id !== bild.id; });
+          renderPreviews();
+        });
+        item.appendChild(removeBtn);
+
+        inst.previewsWrap.appendChild(item);
       });
-      item.appendChild(removeBtn);
-
-      previewsWrap.appendChild(item);
     });
   }
 
@@ -1339,37 +1368,41 @@
     });
   }
 
-  dropzone.addEventListener('click', function(){ fileInput.click(); });
-  dropzone.addEventListener('keydown', function(e){
-    if(e.key === 'Enter' || e.key === ' '){
-      e.preventDefault();
-      fileInput.click();
-    }
-  });
-
-  fileInput.addEventListener('change', function(){
-    dateienHinzufuegen(fileInput.files);
-    fileInput.value = '';
-  });
-
-  ['dragenter', 'dragover'].forEach(function(evtName){
-    dropzone.addEventListener(evtName, function(e){
-      e.preventDefault();
-      e.stopPropagation();
-      dropzone.classList.add('dragover');
+  // Klick-, Tastatur- und Drag&Drop-Verhalten für jedes Upload-Feld einzeln registrieren,
+  // aber alle schreiben in denselben gemeinsamen Zustand.
+  uploadInstanzen.forEach(function(inst){
+    inst.dropzone.addEventListener('click', function(){ inst.fileInput.click(); });
+    inst.dropzone.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        inst.fileInput.click();
+      }
     });
-  });
-  ['dragleave', 'drop'].forEach(function(evtName){
-    dropzone.addEventListener(evtName, function(e){
-      e.preventDefault();
-      e.stopPropagation();
-      dropzone.classList.remove('dragover');
+
+    inst.fileInput.addEventListener('change', function(){
+      dateienHinzufuegen(inst.fileInput.files);
+      inst.fileInput.value = '';
     });
-  });
-  dropzone.addEventListener('drop', function(e){
-    if(e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length){
-      dateienHinzufuegen(e.dataTransfer.files);
-    }
+
+    ['dragenter', 'dragover'].forEach(function(evtName){
+      inst.dropzone.addEventListener(evtName, function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        inst.dropzone.classList.add('dragover');
+      });
+    });
+    ['dragleave', 'drop'].forEach(function(evtName){
+      inst.dropzone.addEventListener(evtName, function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        inst.dropzone.classList.remove('dragover');
+      });
+    });
+    inst.dropzone.addEventListener('drop', function(e){
+      if(e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length){
+        dateienHinzufuegen(e.dataTransfer.files);
+      }
+    });
   });
 
   // ---------- FORM SUBMIT (AJAX) ----------
