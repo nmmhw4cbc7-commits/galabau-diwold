@@ -223,6 +223,7 @@
     .calc-card{padding:24px;}
   }
   .calc-step-label{
+    display:block;
     font-size:12px;
     font-weight:700;
     letter-spacing:0.1em;
@@ -906,12 +907,12 @@
         </div>
 
         <div class="field-group">
-          <label for="flaeche">Schritt 2 — Fläche in m²</label>
+          <label class="calc-step-label" for="flaeche">Schritt 2 — Fläche in m²</label>
           <input type="number" id="flaeche" name="flaeche" min="0" placeholder="z. B. 45">
         </div>
 
         <div class="field-group">
-          <label>Schritt 3 — Bilder hochladen von Ihrem Garten (optional)</label>
+          <div class="calc-step-label">Schritt 3 — Fotos von Ihrem Garten (optional)</div>
           <div class="upload-dropzone" id="upload-dropzone-calc" tabindex="0" role="button" aria-label="Bilder hochladen">
             <p class="upload-dropzone-text"><strong>Bilder hierher ziehen</strong> oder klicken zum Auswählen</p>
             <p class="upload-hint">JPG, PNG oder WEBP · max. 5 Bilder · werden automatisch komprimiert</p>
