@@ -6,6 +6,12 @@
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
+
+  // Consent Mode: Standardmäßig abgelehnt, bis der Nutzer im Cookie-Banner zustimmt.
+  gtag('consent', 'default', {
+    'analytics_storage': 'denied'
+  });
+
   gtag('js', new Date());
   gtag('config', 'G-WJYYD439WQ');
 </script>
@@ -506,6 +512,140 @@
   }
   @media(max-width:900px){
     .philosophy-block{margin-top:56px;padding-top:48px;}
+  }
+
+  /* ---------- COOKIE-BANNER ---------- */
+  .cookie-banner{
+    position:fixed;
+    left:20px;
+    right:20px;
+    bottom:20px;
+    max-width:640px;
+    margin:0 auto;
+    background:var(--color-bg);
+    border:1px solid var(--color-border);
+    border-radius:var(--radius);
+    box-shadow:0 20px 50px -20px rgba(27,67,50,0.35);
+    padding:24px;
+    z-index:10000;
+    display:none;
+  }
+  .cookie-banner.show{display:block;}
+  .cookie-banner-row{
+    display:flex;
+    align-items:flex-start;
+    gap:14px;
+  }
+  .cookie-banner-icon{
+    width:34px;
+    height:34px;
+    flex-shrink:0;
+    border-radius:8px;
+    object-fit:contain;
+  }
+  .cookie-banner-text p{
+    font-size:14px;
+    line-height:1.6;
+    color:var(--color-text-soft);
+    margin:0;
+  }
+  .cookie-banner-text a{
+    color:var(--color-primary);
+    text-decoration:underline;
+  }
+  .cookie-banner-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:18px;
+    justify-content:flex-end;
+  }
+  .cookie-btn{
+    padding:11px 20px;
+    border-radius:999px;
+    font-size:13.5px;
+    font-weight:600;
+    letter-spacing:0.01em;
+    cursor:pointer;
+    border:1px solid var(--color-primary);
+    background:transparent;
+    color:var(--color-primary);
+    transition:background .3s cubic-bezier(.16,1,.3,1),color .3s cubic-bezier(.16,1,.3,1),transform .3s cubic-bezier(.16,1,.3,1);
+  }
+  .cookie-btn:hover{transform:translateY(-2px);}
+  .cookie-btn--ghost:hover{background:var(--color-secondary-alt);}
+  .cookie-btn--accept{
+    background:var(--color-primary);
+    color:#fff;
+    border:1px solid var(--color-primary);
+  }
+  .cookie-btn--accept:hover{background:var(--color-primary-light);}
+
+  .cookie-settings-panel{
+    display:none;
+    margin-top:18px;
+    padding-top:18px;
+    border-top:1px solid var(--color-border);
+  }
+  .cookie-settings-panel.show{display:block;}
+  .cookie-settings-row{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:16px;
+    padding:12px 0;
+  }
+  .cookie-settings-row + .cookie-settings-row{border-top:1px solid var(--color-border);}
+  .cookie-settings-row-text strong{
+    display:block;
+    font-size:14px;
+    color:var(--color-text);
+    margin-bottom:3px;
+  }
+  .cookie-settings-row-text span{
+    font-size:12.5px;
+    color:var(--color-text-soft);
+    line-height:1.5;
+  }
+  .cookie-switch{
+    position:relative;
+    width:42px;
+    height:24px;
+    flex-shrink:0;
+  }
+  .cookie-switch input{
+    opacity:0;
+    width:0;
+    height:0;
+  }
+  .cookie-switch-track{
+    position:absolute;
+    inset:0;
+    background:var(--color-border);
+    border-radius:999px;
+    cursor:pointer;
+    transition:background .25s ease;
+  }
+  .cookie-switch-track::before{
+    content:'';
+    position:absolute;
+    width:18px;
+    height:18px;
+    left:3px;
+    top:3px;
+    background:#fff;
+    border-radius:50%;
+    transition:transform .25s ease;
+    box-shadow:0 1px 3px rgba(0,0,0,0.25);
+  }
+  .cookie-switch input:checked + .cookie-switch-track{background:var(--color-primary);}
+  .cookie-switch input:checked + .cookie-switch-track::before{transform:translateX(18px);}
+  .cookie-switch input:disabled + .cookie-switch-track{opacity:0.6;cursor:not-allowed;}
+
+  @media(max-width:600px){
+    .cookie-banner{left:12px;right:12px;bottom:12px;padding:20px;}
+    .cookie-banner-actions{justify-content:stretch;}
+    .cookie-btn{flex:1;text-align:center;}
   }
 
   /* ---------- RECHTLICHE SEITEN (Datenschutz / Nutzungsbedingungen) ---------- */
@@ -1717,6 +1857,116 @@
     });
   });
 
+})();
+</script>
+
+<!-- ================= COOKIE-BANNER ================= -->
+<div class="cookie-banner" id="cookie-banner">
+  <div class="cookie-banner-row">
+    <img src="cookie.png" alt="" class="cookie-banner-icon">
+    <div class="cookie-banner-text">
+      <p>Wir verwenden Cookies, um unsere Website optimal zu gestalten und fortlaufend zu verbessern. Einige sind technisch notwendig, andere helfen uns, die Nutzung der Website zu verstehen (Statistik). Weitere Infos finden Sie in unserer <a href="#datenschutz" class="legal-page-link">Datenschutzerklärung</a>.</p>
+    </div>
+  </div>
+
+  <div class="cookie-settings-panel" id="cookie-settings-panel">
+    <div class="cookie-settings-row">
+      <div class="cookie-settings-row-text">
+        <strong>Notwendige Cookies</strong>
+        <span>Erforderlich für die Grundfunktionen der Website. Können nicht deaktiviert werden.</span>
+      </div>
+      <label class="cookie-switch">
+        <input type="checkbox" checked disabled>
+        <span class="cookie-switch-track"></span>
+      </label>
+    </div>
+    <div class="cookie-settings-row">
+      <div class="cookie-settings-row-text">
+        <strong>Statistik-Cookies</strong>
+        <span>Helfen uns zu verstehen, wie Besucher die Website nutzen (Google Analytics).</span>
+      </div>
+      <label class="cookie-switch">
+        <input type="checkbox" id="cookie-toggle-analytics">
+        <span class="cookie-switch-track"></span>
+      </label>
+    </div>
+  </div>
+
+  <div class="cookie-banner-actions">
+    <button type="button" class="cookie-btn cookie-btn--ghost" id="cookie-settings-btn">Einstellungen</button>
+    <button type="button" class="cookie-btn cookie-btn--ghost" id="cookie-reject-btn">Ablehnen</button>
+    <button type="button" class="cookie-btn cookie-btn--accept" id="cookie-accept-btn">Akzeptieren</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var COOKIE_KEY = 'galabau_cookie_consent'; // { analytics: true|false, ts: <timestamp> }
+
+  var banner = document.getElementById('cookie-banner');
+  var settingsPanel = document.getElementById('cookie-settings-panel');
+  var settingsBtn = document.getElementById('cookie-settings-btn');
+  var rejectBtn = document.getElementById('cookie-reject-btn');
+  var acceptBtn = document.getElementById('cookie-accept-btn');
+  var analyticsToggle = document.getElementById('cookie-toggle-analytics');
+
+  function ladeConsent(){
+    try {
+      var raw = localStorage.getItem(COOKIE_KEY);
+      return raw ? JSON.parse(raw) : null;
+    } catch(e){ return null; }
+  }
+
+  function speichereConsent(analyticsErlaubt){
+    try {
+      localStorage.setItem(COOKIE_KEY, JSON.stringify({ analytics: analyticsErlaubt, ts: Date.now() }));
+    } catch(e){ /* localStorage evtl. nicht verfügbar (z. B. Privatmodus) */ }
+  }
+
+  function wendeConsentAn(analyticsErlaubt){
+    if(typeof gtag === 'function'){
+      gtag('consent', 'update', {
+        analytics_storage: analyticsErlaubt ? 'granted' : 'denied'
+      });
+    }
+  }
+
+  function bannerVerstecken(){
+    banner.classList.remove('show');
+    settingsPanel.classList.remove('show');
+  }
+
+  var gespeicherterConsent = ladeConsent();
+  if(gespeicherterConsent){
+    // Entscheidung liegt bereits vor -> Banner nicht erneut zeigen, Consent direkt anwenden
+    wendeConsentAn(!!gespeicherterConsent.analytics);
+  } else {
+    // Erster Besuch -> Banner anzeigen
+    banner.classList.add('show');
+  }
+
+  settingsBtn.addEventListener('click', function(){
+    settingsPanel.classList.toggle('show');
+  });
+
+  acceptBtn.addEventListener('click', function(){
+    speichereConsent(true);
+    wendeConsentAn(true);
+    bannerVerstecken();
+  });
+
+  rejectBtn.addEventListener('click', function(){
+    speichereConsent(false);
+    wendeConsentAn(false);
+    bannerVerstecken();
+  });
+
+  analyticsToggle.addEventListener('change', function(){
+    var analyticsErlaubt = analyticsToggle.checked;
+    speichereConsent(analyticsErlaubt);
+    wendeConsentAn(analyticsErlaubt);
+    bannerVerstecken();
+  });
 })();
 </script>
 
