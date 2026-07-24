@@ -500,6 +500,88 @@
     .philosophy-block{margin-top:56px;padding-top:48px;}
   }
 
+  /* ---------- RECHTLICHE SEITEN (Datenschutz / Nutzungsbedingungen) ---------- */
+  .legal-page{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    background:var(--color-bg);
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+  .legal-page.show{display:flex;flex-direction:column;}
+  .legal-page-bar{
+    position:sticky;
+    top:0;
+    background:var(--color-bg);
+    border-bottom:1px solid var(--color-border);
+    padding:18px 24px;
+    z-index:2;
+  }
+  .legal-back-link{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    color:var(--color-primary);
+    font-weight:600;
+    font-size:14.5px;
+    text-decoration:none;
+  }
+  .legal-back-link:hover{text-decoration:underline;}
+  .legal-page-inner{
+    width:100%;
+    max-width:760px;
+    margin-left:auto;
+    margin-right:auto;
+    align-self:center;
+    padding:48px 24px 100px;
+  }
+  .legal-page-inner h1{
+    font-size:clamp(28px, 4vw, 38px);
+    color:var(--color-primary);
+    margin-bottom:8px;
+  }
+  .legal-page-inner .legal-updated{
+    font-size:13px;
+    color:var(--color-text-soft);
+    margin-bottom:36px;
+  }
+  .legal-page-inner h2{
+    font-size:18px;
+    color:var(--color-primary);
+    margin:34px 0 12px;
+  }
+  .legal-page-inner h3{
+    font-size:15.5px;
+    color:var(--color-text);
+    margin:22px 0 8px;
+  }
+  .legal-page-inner p, .legal-page-inner li{
+    font-size:15px;
+    line-height:1.7;
+    color:var(--color-text-soft);
+    margin-bottom:12px;
+  }
+  .legal-page-inner ul{padding-left:20px;margin-bottom:12px;}
+  .legal-page-inner a{color:var(--color-primary);}
+  .legal-page-inner strong{color:var(--color-text);}
+  body.legal-page-open{overflow:hidden;}
+
+  .footer-legal-links{
+    margin-top:14px;
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+  }
+  .footer-legal-links a{
+    color:var(--color-text-soft);
+    font-size:13.5px;
+    text-decoration:none;
+  }
+  .footer-legal-links a:hover{color:var(--color-primary);text-decoration:underline;}
+
   /* ---------- CALENDLY ---------- */
   .calendly-section{
     background:var(--color-secondary);
@@ -1099,9 +1181,126 @@
 
     <div class="footer-bottom">
       &copy; <span id="year"></span> GaLaBau Diwold — Inh. Philipp Diwold · 67354 Römerberg
+      <div class="footer-legal-links">
+        <a href="#datenschutz" class="legal-page-link">Datenschutzerklärung</a>
+        <a href="#nutzungsbedingungen" class="legal-page-link">Nutzungsbedingungen</a>
+      </div>
     </div>
   </div>
 </footer>
+
+<!-- ================= DATENSCHUTZERKLÄRUNG (eigene "Seite", technisch im selben Dokument) ================= -->
+<div class="legal-page" id="datenschutz">
+  <div class="legal-page-bar">
+    <a href="#home" class="legal-back-link legal-page-close">← Zurück zur Startseite</a>
+  </div>
+  <div class="legal-page-inner">
+    <h1>Datenschutzerklärung</h1>
+    <p class="legal-updated">Stand: Juli 2026</p>
+
+    <h2>1. Verantwortlicher</h2>
+    <p>
+      Verantwortlich für die Datenverarbeitung auf dieser Website ist:<br>
+      GaLaBau Diwold<br>
+      Inhaber: Philipp Diwold<br>
+      Wacholderweg 9<br>
+      67346 Speyer<br>
+      E-Mail: <a href="mailto:info@galabau-diwold.de">info@galabau-diwold.de</a><br>
+      Telefon: +49 151 12769548
+    </p>
+
+    <h2>2. Allgemeines zur Datenverarbeitung</h2>
+    <p>Wir verarbeiten personenbezogene Daten unserer Nutzer grundsätzlich nur, soweit dies zur Bereitstellung einer funktionsfähigen Website sowie unserer Inhalte und Leistungen erforderlich ist. Die Verarbeitung personenbezogener Daten erfolgt regelmäßig nur nach Einwilligung des Nutzers oder auf Basis einer anderen gesetzlichen Erlaubnis (z. B. Art. 6 Abs. 1 DSGVO).</p>
+
+    <h2>3. Hosting und Server-Logfiles</h2>
+    <p>Diese Website wird bei einem externen Hosting-Anbieter (Vercel Inc.) gehostet. Beim Aufruf der Website erhebt der Hosting-Anbieter automatisch technische Informationen, die Ihr Browser übermittelt (u. a. IP-Adresse, Datum und Uhrzeit des Zugriffs, aufgerufene Seite, verwendeter Browser). Diese Daten werden ausschließlich zur Sicherstellung eines störungsfreien Betriebs sowie zur Gewährleistung der Sicherheit unserer IT-Systeme verarbeitet (Art. 6 Abs. 1 lit. f DSGVO).</p>
+
+    <h2>4. Kontaktformular</h2>
+    <p>Wenn Sie uns über das Kontaktformular eine Anfrage zukommen lassen, werden die von Ihnen eingegebenen Daten (Name, E-Mail-Adresse, optional Telefonnummer, Postleitzahl, Projektbeschreibung sowie die im Gartenplaner-Rechner getroffene Auswahl) zum Zweck der Bearbeitung Ihrer Anfrage bei uns gespeichert und verarbeitet. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, da die Verarbeitung der Anbahnung eines Vertrags dient.</p>
+    <p>Der Versand erfolgt technisch über den E-Mail-Dienstleister <strong>Resend</strong>, der als Auftragsverarbeiter für uns tätig wird. Resend kann Server außerhalb der EU (u. a. in den USA) betreiben; in diesem Fall stellen geeignete Garantien (z. B. EU-Standardvertragsklauseln) ein angemessenes Datenschutzniveau sicher.</p>
+
+    <h3>Optionaler Bild-Upload</h3>
+    <p>Falls Sie über das Formular Fotos Ihres Gartens hochladen, werden diese direkt in Ihrem Browser automatisch verkleinert und komprimiert, bevor sie zusammen mit Ihrer Anfrage per E-Mail an uns übermittelt werden. Die Bilder werden nicht dauerhaft auf einem Server gespeichert, sondern lediglich zur Bearbeitung Ihrer Anfrage als E-Mail-Anhang weitergeleitet und anschließend wie Ihre übrige Anfrage behandelt.</p>
+
+    <h2>5. Terminbuchung über Calendly</h2>
+    <p>Zur Online-Terminvereinbarung binden wir den Dienst <strong>Calendly</strong> (Calendly LLC, USA) ein. Wenn Sie über dieses Formular einen Termin buchen, werden die von Ihnen eingegebenen Daten (z. B. Name, E-Mail-Adresse, gewünschter Termin) an Calendly übermittelt und dort verarbeitet. Es kann dabei zu einer Datenübermittlung in die USA kommen. Weitere Informationen finden Sie in der Datenschutzerklärung von Calendly: <a href="https://calendly.com/privacy" target="_blank" rel="noopener">calendly.com/privacy</a>.</p>
+
+    <h2>6. Chat-Funktion (Elfsight)</h2>
+    <p>Auf unserer Website nutzen wir ein Chat-Widget des Anbieters <strong>Elfsight</strong>. Beim Aufruf der Website wird eine Verbindung zu den Servern von Elfsight hergestellt; sofern Sie den Chat aktiv nutzen, werden die von Ihnen eingegebenen Informationen verarbeitet, um Ihre Anfrage zu beantworten. Weitere Hinweise finden Sie in der Datenschutzerklärung von Elfsight.</p>
+
+    <h2>7. Externe Links</h2>
+    <p>Unsere Website enthält Links zu Instagram und WhatsApp. Beim Anklicken verlassen Sie unsere Seite; für die Datenverarbeitung der jeweiligen Anbieter (Meta Platforms Ireland Limited) sind ausschließlich diese verantwortlich.</p>
+
+    <h2>8. Cookies</h2>
+    <p>Wir selbst setzen derzeit keine Analyse- oder Tracking-Cookies ein. Die eingebundenen Drittanbieter-Dienste (Calendly, Elfsight) können jedoch technisch bedingt eigene Cookies setzen, sobald deren Inhalte geladen oder genutzt werden. Sie können der Nutzung dieser Dienste widersprechen, indem Sie die entsprechenden Funktionen (Buchungskalender, Chat) nicht nutzen.</p>
+
+    <h2>9. Speicherdauer</h2>
+    <p>Wir speichern personenbezogene Daten aus Kontaktanfragen nur so lange, wie es zur Bearbeitung Ihrer Anfrage sowie zur Erfüllung etwaiger gesetzlicher Aufbewahrungspflichten erforderlich ist.</p>
+
+    <h2>10. Ihre Rechte</h2>
+    <p>Ihnen stehen gegenüber uns folgende Rechte hinsichtlich der Sie betreffenden personenbezogenen Daten zu:</p>
+    <ul>
+      <li>Recht auf Auskunft (Art. 15 DSGVO)</li>
+      <li>Recht auf Berichtigung (Art. 16 DSGVO)</li>
+      <li>Recht auf Löschung (Art. 17 DSGVO)</li>
+      <li>Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO)</li>
+      <li>Recht auf Datenübertragbarkeit (Art. 20 DSGVO)</li>
+      <li>Widerspruchsrecht gegen die Verarbeitung (Art. 21 DSGVO)</li>
+      <li>Recht auf Widerruf erteilter Einwilligungen (Art. 7 Abs. 3 DSGVO)</li>
+    </ul>
+    <p>Zudem haben Sie das Recht, sich bei einer Datenschutz-Aufsichtsbehörde über die Verarbeitung Ihrer personenbezogenen Daten zu beschweren.</p>
+
+    <h2>11. Datensicherheit</h2>
+    <p>Diese Website nutzt aus Sicherheitsgründen eine SSL- bzw. TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie an dem Schloss-Symbol in der Adresszeile Ihres Browsers.</p>
+
+    <h2>12. Aktualität und Änderung dieser Datenschutzerklärung</h2>
+    <p>Diese Datenschutzerklärung ist aktuell gültig. Durch die Weiterentwicklung unserer Website und Angebote oder aufgrund geänderter gesetzlicher Vorgaben kann es notwendig werden, diese Datenschutzerklärung anzupassen.</p>
+  </div>
+</div>
+
+<!-- ================= NUTZUNGSBEDINGUNGEN (eigene "Seite", technisch im selben Dokument) ================= -->
+<div class="legal-page" id="nutzungsbedingungen">
+  <div class="legal-page-bar">
+    <a href="#home" class="legal-back-link legal-page-close">← Zurück zur Startseite</a>
+  </div>
+  <div class="legal-page-inner">
+    <h1>Nutzungsbedingungen</h1>
+    <p class="legal-updated">Stand: Juli 2026</p>
+
+    <h2>1. Geltungsbereich</h2>
+    <p>Diese Nutzungsbedingungen gelten für die Nutzung der Website von GaLaBau Diwold (nachfolgend „wir" oder „Anbieter") unter der Domain galabau-diwold.de.</p>
+
+    <h2>2. Inhalte dieser Website</h2>
+    <p>Die auf dieser Website bereitgestellten Inhalte, insbesondere Texte, Bilder, Grafiken und der Gartenplaner-Rechner, dienen ausschließlich der allgemeinen Information über unsere Leistungen. Wir sind bemüht, die Inhalte stets aktuell und korrekt zu halten, übernehmen jedoch keine Gewähr für deren Richtigkeit, Vollständigkeit oder Aktualität.</p>
+
+    <h3>Gartenplaner-Rechner</h3>
+    <p>Die im Gartenplaner-Rechner angezeigte Preisspanne ist eine unverbindliche, automatisiert ermittelte Schätzung auf Basis Ihrer Angaben. Sie stellt kein rechtsverbindliches Angebot dar und ersetzt keine individuelle Vor-Ort-Beratung oder ein schriftliches Angebot unsererseits.</p>
+
+    <h2>3. Kontaktanfragen und Vertragsschluss</h2>
+    <p>Das Absenden einer Anfrage über unser Kontaktformular stellt lediglich eine unverbindliche Anfrage dar und begründet noch keinen Vertrag zwischen Ihnen und uns. Ein Vertragsverhältnis kommt erst durch ein gesondertes, von uns erstelltes schriftliches Angebot und dessen Annahme durch Sie zustande.</p>
+
+    <h2>4. Urheberrecht</h2>
+    <p>Die auf dieser Website veröffentlichten Inhalte unterliegen dem deutschen Urheberrecht. Jede Form der Vervielfältigung, Bearbeitung, Verbreitung oder sonstigen Nutzung außerhalb der gesetzlich zulässigen Grenzen bedarf der vorherigen schriftlichen Zustimmung des jeweiligen Urhebers bzw. Erstellers.</p>
+
+    <h2>5. Externe Links und Drittanbieter-Dienste</h2>
+    <p>Diese Website verweist auf bzw. bindet Dienste Dritter ein (u. a. Instagram, WhatsApp, Calendly, Elfsight). Für die Inhalte und die Verfügbarkeit dieser externen Angebote sind ausschließlich die jeweiligen Anbieter verantwortlich; wir machen uns deren Inhalte nicht zu eigen und übernehmen hierfür keine Haftung.</p>
+
+    <h2>6. Verfügbarkeit der Website</h2>
+    <p>Wir sind bemüht, die Website möglichst unterbrechungsfrei zugänglich zu halten, übernehmen jedoch keine Gewähr für eine ständige Verfügbarkeit oder Fehlerfreiheit, insbesondere bei technischen Störungen, Wartungsarbeiten oder höherer Gewalt.</p>
+
+    <h2>7. Haftung</h2>
+    <p>Wir haften unbeschränkt bei Vorsatz und grober Fahrlässigkeit sowie nach Maßgabe des Produkthaftungsgesetzes. Im Übrigen haften wir nur bei der Verletzung einer wesentlichen Vertragspflicht, deren Erfüllung die ordnungsgemäße Nutzung der Website überhaupt erst ermöglicht, begrenzt auf den vorhersehbaren, typischerweise eintretenden Schaden.</p>
+
+    <h2>8. Änderungen dieser Nutzungsbedingungen</h2>
+    <p>Wir behalten uns vor, diese Nutzungsbedingungen bei Bedarf anzupassen, etwa aufgrund geänderter rechtlicher Rahmenbedingungen oder Weiterentwicklungen unserer Website.</p>
+
+    <h2>9. Anwendbares Recht</h2>
+    <p>Es gilt das Recht der Bundesrepublik Deutschland.</p>
+
+    <h2>10. Kontakt</h2>
+    <p>Bei Fragen zu diesen Nutzungsbedingungen erreichen Sie uns unter <a href="mailto:info@galabau-diwold.de">info@galabau-diwold.de</a> oder telefonisch unter +49 151 12769548.</p>
+  </div>
+</div>
 
 <!-- Elfsight AI Chatbot | Untitled AI Chatbot -->
 <script src="https://elfsightcdn.com/platform.js" async></script>
@@ -1109,6 +1308,37 @@
 
 <script>
 (function(){
+
+  // ---------- RECHTLICHE SEITEN (Datenschutz / Nutzungsbedingungen) ----------
+  var legalPages = document.querySelectorAll('.legal-page');
+  var legalPageIds = ['datenschutz', 'nutzungsbedingungen'];
+
+  function zeigeLegalPageAusHash(){
+    var hash = window.location.hash.replace('#', '');
+    var istLegalPage = legalPageIds.indexOf(hash) !== -1;
+
+    legalPages.forEach(function(page){
+      page.classList.toggle('show', page.id === hash);
+    });
+    document.body.classList.toggle('legal-page-open', istLegalPage);
+
+    if(istLegalPage){
+      var aktuellePage = document.getElementById(hash);
+      if(aktuellePage) aktuellePage.scrollTop = 0;
+      window.scrollTo(0, 0);
+    }
+  }
+
+  document.querySelectorAll('.legal-page-link, .legal-page-close').forEach(function(link){
+    link.addEventListener('click', function(e){
+      // Normales Hash-Verhalten nutzen (funktioniert auch mit Zurück-Button des Browsers),
+      // nur zusätzlich sofort synchron umschalten für ein sofortiges "Seitenwechsel"-Gefühl.
+      setTimeout(zeigeLegalPageAusHash, 0);
+    });
+  });
+
+  window.addEventListener('hashchange', zeigeLegalPageAusHash);
+  zeigeLegalPageAusHash(); // Direktaufruf mit #datenschutz / #nutzungsbedingungen in der URL unterstützen
 
   // ---------- SERVICE DATA ----------
   var services = {}; // key -> {min,max,type,active}
