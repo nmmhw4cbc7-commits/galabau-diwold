@@ -74,6 +74,7 @@ module.exports = async (req, res) => {
     const telefon = cleanInput(body.telefon);
     const plz = cleanInput(body.plz);
     const nachricht = cleanInput(body.nachricht);
+    const quelle = cleanInput(body.quelle); // <-- NEU: Quelle aus dem Formular auslesen
 
     const leistungen = cleanInput(body.leistungen);
     const flaeche = cleanInput(body.flaeche_m2);
@@ -113,6 +114,7 @@ module.exports = async (req, res) => {
       `E-Mail:          ${email}`,
       `Telefon:         ${telefon || '(nicht angegeben)'}`,
       `PLZ:             ${plz}`,
+      `Aufmerksam durch:${quelle || '(nicht angegeben)'}`, // <-- NEU: In E-Mail ausgeben
       '',
       'PROJEKTDETAILS',
       '--------------------------------------------------------',
