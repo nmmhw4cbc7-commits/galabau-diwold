@@ -1827,7 +1827,7 @@
       email: document.getElementById('email').value,
       telefon: document.getElementById('telefon').value,
       plz: plzInput.value,
-      herkunft: document.getElementById('herkunft').value,
+      quelle: document.getElementById('herkunft').value, // <-- HIER KORRIGIERT: quellen-Schlüssel wird nun korrekt ans Backend gesendet
       nachricht: document.getElementById('nachricht').value,
       leistungen: selectedServices.join(', '),
       flaeche_m2: flaecheInput.value || '0',
