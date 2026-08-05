@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WJYYD439WQ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  // Consent Mode: Standardmäßig abgelehnt, bis der Nutzer im Cookie-Banner zustimmt.
+  gtag('consent', 'default', {
+    'analytics_storage': 'denied'
+  });
+
+  gtag('js', new Date());
+  gtag('config', 'G-WJYYD439WQ');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Referenzen — GaLaBau Dachtler</title>
+<meta name="description" content="Entdecken Sie unsere erfolgreich umgesetzten Projekte im Garten- und Landschaftsbau. Vorher-Nachher Vergleiche unserer Arbeit in der Pfalz.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Crect%20width='100'%20height='100'%20rx='22'%20fill='%231b4332'/%3E%3Cpath%20d='M50%2010%20C50%2010%2030%2034%2030%2050%20C30%2061%2038%2069%2048%2070%20L44%2088%20L56%2088%20L52%2070%20C62%2069%2070%2061%2070%2050%20C70%2034%2050%2010%2050%2010%20Z'%20fill='%23f4f1ea'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --color-primary:#1b4332;
+    --color-primary-light:#2d6a4f;
+    --color-secondary:#f4f1ea;
+    --color-secondary-alt:#f9f8f6;
+    --color-bg:#ffffff;
+    --color-text:#1a1a1a;
+    --color-text-soft:#5c5c58;
+    --color-border:#e4e0d6;
+    --color-error:#a13a2f;
+    --color-success:#1b4332;
+    --font-system:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    --max-width:1180px;
+    --radius:14px;
+  }
+
+  *,*::before,*::after{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:var(--font-system);
+    color:var(--color-text);
+    background:var(--color-bg);
+    -webkit-font-smoothing:antialiased;
+    line-height:1.6;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  ul{margin:0;padding:0;list-style:none;}
+  button{font-family:inherit;cursor:pointer;}
+  input,textarea,select{font-family:inherit;}
+
+  .wrap{
+    max-width:var(--max-width);
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  h1,h2,h3{
+    margin:0;
+    letter-spacing:-0.03em;
+    font-weight:700;
+    line-height:1.1;
+  }
+
+  section{padding:120px 0;}
+  @media(max-width:900px){
+    section{padding:80px 0;}
+    .wrap{padding:0 20px;}
+  }
+
+  /* ---------- HEADER ---------- */
+  header.site-header{
+    position:sticky;
+    top:0;
+    z-index:900;
+    background:rgba(255,255,255,0.85);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--color-border);
+  }
+  .header-inner{
+    max-width:var(--max-width);
+    margin:0 auto;
+    padding:12px 32px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:24px;
+  }
+  @media(max-width:900px){
+    .header-inner{padding:10px 20px;}
+  }
+  .logo-link{display:flex;align-items:center;}
+  nav.main-nav ul{
+    display:flex;
+    gap:36px;
+  }
+  nav.main-nav a{
+    font-size:15px;
+    font-weight:500;
+    color:var(--color-text);
+    transition:color .25s ease;
+  }
+  nav.main-nav a:hover{color:var(--color-primary);}
+  @media(max-width:800px){
+    nav.main-nav{display:none;}
+  }
+  .btn-outline{
+    display:inline-block;
+    padding:11px 22px;
+    border:1px solid var(--color-primary);
+    color:var(--color-primary);
+    background:transparent;
+    border-radius:999px;
+    font-size:14px;
+    font-weight:600;
+    letter-spacing:0.01em;
+    transition:background .3s cubic-bezier(.16,1,.3,1),color .3s cubic-bezier(.16,1,.3,1),transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s cubic-bezier(.16,1,.3,1);
+    white-space:nowrap;
+  }
+  .btn-outline:hover{
+    background:var(--color-primary);
+    color:#fff;
+    transform:translateY(-2px);
+    box-shadow:0 10px 24px -10px rgba(27,67,50,0.45);
+  }
+  .btn-outline:active{
+    transform:translateY(0);
+  }
+
+  .header-actions{
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .btn-round-wa{
+    width:44px;
+    height:44px;
+    padding:0;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+  }
+  .btn-round-wa svg{
+    width:20px;
+    height:20px;
+    transition:fill .3s cubic-bezier(.16,1,.3,1);
+  }
+
+  /* ---------- REFERENZEN STYLES ---------- */
+  .page-header {
+    text-align: center;
+    padding-top: 88px;
+    padding-bottom: 56px;
+  }
+  .page-header span.eyebrow {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-primary-light);
+    display: block;
+    margin-bottom: 16px;
+  }
+  .page-header h1 {
+    font-size: clamp(38px, 4.6vw, 58px);
+    margin-bottom: 24px;
+  }
+  .page-header p.lead {
+    font-size: 18px;
+    color: var(--color-text-soft);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .project-item {
+    margin-bottom: 100px;
+  }
+  .project-item:last-child {
+    margin-bottom: 0;
+  }
+  .project-info {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto 36px;
+  }
+  .project-info h2 {
+    font-size: 28px;
+    margin-bottom: 12px;
+    color: var(--color-primary);
+  }
+  .project-info p {
+    font-size: 15px;
+    color: var(--color-text-soft);
+    margin: 0;
+  }
+  
+  .project-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  @media(max-width: 768px) {
+    .project-gallery {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+  }
+  
+  .image-box {
+    position: relative;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 12px 30px -15px rgba(27,67,50,0.15);
+  }
+  .image-box img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    transition: transform .5s cubic-bezier(.16,1,.3,1);
+  }
+  .image-box:hover img {
+    transform: scale(1.03);
+  }
+  .image-label {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+
+  /* ---------- FOOTER (Kopiert) ---------- */
+  footer{
+    padding:100px 0 40px;
+    border-top:1px solid var(--color-border);
+    background:var(--color-secondary);
+    color:var(--color-text-soft);
+    font-size:13.5px;
+    text-align:left;
+    margin-top: 80px;
+  }
+  .footer-head{margin-bottom:56px;}
+  .footer-head span.eyebrow{
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--color-primary-light);
+    display:block;
+    margin-bottom:16px;
+  }
+  .footer-head h2{
+    font-size:clamp(28px,3.2vw,38px);
+    color:var(--color-text);
+  }
+  .impressum-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:64px;
+    margin-bottom:56px;
+  }
+  @media(max-width:900px){
+    .impressum-grid{grid-template-columns:1fr;gap:40px;}
+  }
+  .impressum-col h3{
+    font-size:14px;
+    font-weight:700;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    color:var(--color-primary);
+    margin:0 0 14px;
+  }
+  .impressum-col h3:not(:first-child){margin-top:32px;}
+  .impressum-col p{
+    font-size:14.5px;
+    line-height:1.7;
+    color:var(--color-text-soft);
+    margin:0 0 4px;
+  }
+  .impressum-link{
+    color:var(--color-primary-light);
+    font-weight:600;
+    transition:color .25s ease;
+  }
+  .impressum-link:hover{
+    color:var(--color-primary);
+    text-decoration:underline;
+  }
+  .footer-social{
+    display:flex;
+    justify-content:center;
+    margin-bottom:32px;
+  }
+  .social-icon-link{
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    border:1px solid var(--color-primary);
+    color:var(--color-primary);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:background .3s cubic-bezier(.16,1,.3,1),color .3s cubic-bezier(.16,1,.3,1),transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s cubic-bezier(.16,1,.3,1);
+  }
+  .social-icon-link:hover{
+    background:var(--color-primary);
+    color:#fff;
+    transform:translateY(-2px);
+    box-shadow:0 10px 24px -10px rgba(27,67,50,0.45);
+  }
+  .social-icon-link svg{width:20px;height:20px;}
+  .footer-bottom{
+    text-align:center;
+    padding-top:32px;
+    border-top:1px solid var(--color-border);
+    font-size:13.5px;
+    color:var(--color-text-soft);
+  }
+
+  /* ---------- SCROLL REVEAL ---------- */
+  .reveal{
+    opacity:0;
+    transform:translateY(32px);
+    transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1);
+    will-change:opacity,transform;
+  }
+  .reveal.is-visible{
+    opacity:1;
+    transform:translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;animation:none !important;}
+    .reveal{opacity:1;transform:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo-link">
+      <img src="logo.png" alt="GaLaBau Dachtler Logo" style="height: 45px; width: auto;">
+    </a>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="index.html#home">Startseite</a></li>
+        <li><a href="index.html#leistungen">Leistungen</a></li>
+        <li><a href="referenzen.html">Referenzen</a></li>
+        <li><a href="index.html#gartenplaner">Gartenplaner</a></li>
+        <li><a href="index.html#kontakt">Kontakt</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <a href="index.html#kontakt" class="btn-outline">Jetzt anfragen</a>
+      <a href="https://wa.me/4915112769548" target="_blank" rel="noopener" class="btn-outline btn-round-wa" aria-label="WhatsApp Kontakt">
+        <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16.001 2.667c-7.364 0-13.334 5.97-13.334 13.334 0 2.353.617 4.66 1.789 6.686L2.667 29.333l6.79-1.78a13.27 13.27 0 0 0 6.544 1.714h.006c7.363 0 13.333-5.97 13.333-13.333 0-3.562-1.387-6.912-3.906-9.431a13.246 13.246 0 0 0-9.433-3.836zm0 24.4h-.005a11.06 11.06 0 0 1-5.636-1.543l-.404-.24-4.03 1.057 1.076-3.928-.263-.403a11.06 11.06 0 0 1-1.695-5.909c0-6.117 4.978-11.095 11.096-11.095a11.02 11.02 0 0 1 7.845 3.253 11.02 11.02 0 0 1 3.248 7.85c-.003 6.117-4.98 11.095-11.096 11.095zm6.088-8.309c-.334-.167-1.974-.973-2.28-1.084-.306-.111-.529-.166-.751.167-.222.334-.86 1.084-1.055 1.306-.194.223-.389.25-.723.084-.334-.167-1.409-.52-2.684-1.657-.992-.885-1.662-1.978-1.856-2.311-.194-.334-.021-.514.146-.68.15-.15.334-.39.5-.585.167-.195.223-.334.334-.556.111-.223.056-.418-.028-.585-.083-.167-.75-1.81-1.028-2.478-.271-.65-.546-.562-.75-.572l-.639-.011c-.222 0-.584.083-.89.417-.306.334-1.167 1.14-1.167 2.78s1.195 3.226 1.362 3.448c.167.223 2.353 3.593 5.702 5.038.797.344 1.418.55 1.902.704.799.254 1.526.218 2.101.132.641-.096 1.974-.807 2.252-1.587.278-.78.278-1.448.195-1.587-.084-.14-.306-.223-.639-.39z"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="page-header reveal">
+      <span class="eyebrow">Unsere Arbeit</span>
+      <h1>Projektreferenzen</h1>
+      <p class="lead">Machen Sie sich ein Bild von unserer Arbeit. Hier sehen Sie ausgewählte Projekte und wie wir Gärten und Außenanlagen verwandelt haben.</p>
+    </div>
+
+    <!-- PROJEKT 1 -->
+    <div class="project-item reveal">
+      <div class="project-info">
+        <h2>Moderne Terrassengestaltung</h2>
+        <p>Neuanlage einer großzügigen Terrasse inklusive präziser Pflasterarbeiten und angrenzender, pflegeleichter Beetgestaltung.</p>
+      </div>
+      <div class="project-gallery">
+        <div class="image-box">
+          <!-- Platzhalter für dein VORHER Bild -->
+          <img src="https://images.unsplash.com/photo-1588698115682-84180d507b5a?w=800&q=80" alt="Projekt 1 Vorher">
+          <span class="image-label">Vorher</span>
+        </div>
+        <div class="image-box">
+          <!-- Platzhalter für dein NACHHER Bild -->
+          <img src="https://images.unsplash.com/photo-1605810730811-4fae997f7071?w=800&q=80" alt="Projekt 1 Nachher">
+          <span class="image-label">Nachher</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJEKT 2 -->
+    <div class="project-item reveal">
+      <div class="project-info">
+        <h2>Komplette Vorgarten-Sanierung</h2>
+        <p>Entfernung von altem Gestrüpp, Begradigung der Fläche und Verlegung eines modernen, langlebigen Natursteinpflasters als repräsentative Einfahrt.</p>
+      </div>
+      <div class="project-gallery">
+        <div class="image-box">
+          <!-- Platzhalter für dein VORHER Bild -->
+          <img src="https://images.unsplash.com/photo-1599598425947-3300262174c8?w=800&q=80" alt="Projekt 2 Vorher">
+          <span class="image-label">Vorher</span>
+        </div>
+        <div class="image-box">
+          <!-- Platzhalter für dein NACHHER Bild -->
+          <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=800&q=80" alt="Projekt 2 Nachher">
+          <span class="image-label">Nachher</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJEKT 3 -->
+    <div class="project-item reveal">
+      <div class="project-info">
+        <h2>Gartenkomplettumbau & Rollrasen</h2>
+        <p>Rundum-Erneuerung des Außenbereichs: Vom verwilderten Grundstück zur saftig grünen Wohlfühloase mit nahtlos verlegtem Rollrasen.</p>
+      </div>
+      <div class="project-gallery">
+        <div class="image-box">
+          <!-- Platzhalter für dein VORHER Bild -->
+          <img src="https://images.unsplash.com/photo-1558904541-efa843a96f09?w=800&q=80" alt="Projekt 3 Vorher">
+          <span class="image-label">Vorher</span>
+        </div>
+        <div class="image-box">
+          <!-- Platzhalter für dein NACHHER Bild -->
+          <img src="https://images.unsplash.com/photo-1558905380-044f5358cb61?w=800&q=80" alt="Projekt 3 Nachher">
+          <span class="image-label">Nachher</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer id="impressum">
+  <div class="wrap">
+    <div class="footer-head reveal">
+      <span class="eyebrow">Rechtliches</span>
+      <h2>Impressum.</h2>
+    </div>
+
+    <div class="impressum-grid reveal">
+      <div class="impressum-col">
+        <h3>Angaben gemäß § 5 DDG</h3>
+        <p>
+          GaLaBau Dachtler<br>
+          Inhaber: Philipp Dachtler<br>
+          Wacholderweg 9<br>
+          67346 Speyer<br>
+          Deutschland
+        </p>
+        <p><a href="https://www.galabau-dachtler.de" class="impressum-link">www.galabau-dachtler.de</a></p>
+
+        <h3>Kontakt</h3>
+        <p>
+          Telefon: +49 151 12769548<br>
+          E-Mail: info@galabau-dachtler.de
+        </p>
+      </div>
+
+      <div class="impressum-col">
+        <h3>Verbraucherstreitbeilegung</h3>
+        <p>Wir sind weder bereit noch verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+
+        <h3>Haftung für Inhalte</h3>
+        <p>Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen.</p>
+
+        <h3>Urheberrecht</h3>
+        <p>Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede sonstige Verwertung außerhalb der Grenzen des Urheberrechts bedürfen der vorherigen schriftlichen Zustimmung des jeweiligen Urhebers beziehungsweise Erstellers.</p>
+      </div>
+    </div>
+
+    <div class="footer-social reveal">
+      <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram" class="social-icon-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+          <circle cx="12" cy="12" r="4.2"></circle>
+          <circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"></circle>
+        </svg>
+      </a>
+    </div>
+
+    <div class="footer-bottom">
+      &copy; <span id="year"></span> GaLaBau Dachtler — Inh. Philipp Dachtler · 67354 Römerberg
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ---------- FOOTER YEAR ----------
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ---------- SCROLL REVEAL ----------
+  (function(){
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var revealEls = document.querySelectorAll('.reveal');
+
+    if(reduceMotion || typeof IntersectionObserver === 'undefined'){
+      revealEls.forEach(function(el){ el.classList.add('is-visible'); });
+      return;
+    }
+
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+    revealEls.forEach(function(el){ observer.observe(el); });
+  })();
+</script>
+
+</body>
+</html>
