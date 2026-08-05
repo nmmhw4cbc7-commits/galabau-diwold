@@ -206,10 +206,16 @@
     grid-template-columns: 1fr 1fr;
     gap: 32px;
   }
+  .project-gallery + .project-gallery {
+    margin-top: 32px;
+  }
   @media(max-width: 768px) {
     .project-gallery {
       grid-template-columns: 1fr;
       gap: 24px;
+    }
+    .project-gallery + .project-gallery {
+      margin-top: 24px;
     }
   }
   
@@ -389,6 +395,18 @@
       <div class="project-info">
         <h2>Professionelle Pflasterarbeiten</h2>
         <p>Von den Erdarbeiten bis zur fertigen Pflasterfläche – dieses Projekt zeigt die fachgerechte Ausführung einer langlebigen und optisch ansprechenden Außenfläche.</p>
+      </div>
+      <div class="project-gallery">
+        <div class="image-box">
+          <!-- Platzhalter für dein VORHER Bild -->
+          <img src="vorher1.jpg" alt="Projekt 1 Vorher">
+          <span class="image-label">Vorher</span>
+        </div>
+        <div class="image-box">
+          <!-- Platzhalter für dein NACHHER Bild -->
+          <img src="nachher1.jpg" alt="Projekt 1 Nachher">
+          <span class="image-label">Nachher</span>
+        </div>
       </div>
       <div class="project-gallery">
         <div class="image-box">
