@@ -18,6 +18,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GaLaBau Diwold — Garten- und Landschaftsbau in der Pfalz</title>
+<meta name="description" content="GaLaBau Diwold – Garten- und Landschaftsbau in Speyer. Seit über 4 Jahren gestalten wir Terrassen, Wege, Pflasterarbeiten, Pflanzkonzepte und mehr für Privat- und Gewerbekunden im Umkreis von 50 km.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Crect%20width='100'%20height='100'%20rx='22'%20fill='%231b4332'/%3E%3Cpath%20d='M50%2010%20C50%2010%2030%2034%2030%2050%20C30%2061%2038%2069%2048%2070%20L44%2088%20L56%2088%20L52%2070%20C62%2069%2070%2061%2070%2050%20C70%2034%2050%2010%2050%2010%20Z'%20fill='%23f4f1ea'/%3E%3C/svg%3E">
 <meta name="description" content="GaLaBau Diwold – Garten- und Landschaftsbau in Speyer. Seit über 4 Jahren gestalten wir Terrassen, Wege, Pflasterarbeiten, Pflanzkonzepte und mehr für Privat-[...]
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Crect%20width='100'%20height='100'%20rx='22'%20fill='%231b4332'%3E%3C/rect%3E%3Cpath%20d='M25%2035h50v35H25z'%20fill='none'%20stroke='%23fff'%20stroke-width='2.5'%20stroke-linejoin='round'/%3E%3Cpath%20d='M25%2035l25%2018.75L75%2035'%20fill='none'%20stroke='%23fff'%20stroke-width='2.5'%20stroke-linejoin='round'/%3E%3C/svg%3E">
 <style>
@@ -998,3 +1000,994 @@
   .impressum-grid{
     display:grid;
     grid-template-columns:1fr 1fr;
+    gap:56px;
+  }
+  @media(max-width:800px){
+    .impressum-grid{grid-template-columns:1fr;gap:40px;}
+  }
+  .impressum-block{margin-bottom:36px;}
+  .impressum-block:last-child{margin-bottom:0;}
+  .impressum-heading{
+    color:#fff;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    margin-bottom:16px;
+  }
+  .impressum-block p{
+    color:#9a9a97;
+    font-size:15px;
+    line-height:1.65;
+    margin:0 0 4px;
+  }
+  .impressum-block p:last-child{margin-bottom:0;}
+  .impressum-link{
+    color:#e07b3c;
+    text-decoration:none;
+  }
+  .impressum-link:hover{text-decoration:underline;}
+  .impressum-social{
+    display:flex;
+    justify-content:center;
+    margin-top:56px;
+  }
+  .impressum-insta{
+    width:46px;
+    height:46px;
+    border-radius:50%;
+    border:1.5px solid rgba(255,255,255,0.25);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:border-color .3s ease,transform .3s ease,background .3s ease;
+  }
+  .impressum-insta svg{width:20px;height:20px;fill:#fff;}
+  .impressum-insta:hover{
+    border-color:#e07b3c;
+    background:#e07b3c;
+    transform:translateY(-2px);
+  }
+
+  /* ---------- SCROLL REVEAL ---------- */
+  .reveal{
+    opacity:0;
+    transform:translateY(32px);
+    transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1);
+    will-change:opacity,transform;
+  }
+  .reveal.is-visible{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;animation:none !important;}
+    .reveal{opacity:1;transform:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="#" class="logo-link">
+      <img src="logo.png" alt="GaLaBau Diwold Logo" style="height: 45px; width: auto;">
+    </a>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="#home">Startseite</a></li>
+        <li><a href="#leistungen">Leistungen</a></li>
+        <li><a href="referenzen.html">Referenzen</a></li>
+        <li><a href="#gartenplaner">Gartenplaner</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <a href="#kontakt" class="btn-outline">Jetzt anfragen</a>
+      <a href="https://wa.me/4915112769548" target="_blank" rel="noopener" class="btn-outline btn-round-wa" aria-label="WhatsApp Kontakt">
+        <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16.001 2.667c-7.364 0-13.334 5.97-13.334 13.334 0 2.353.617 4.66 1.789 6.686L2.667 29.333l6.79-1.78a13.27 13.27 0 0 0 6.544 1.714h.006c7.363 0 13.333-5.97 13.333-13.333 0-3.562-1.387-6.912-3.906-9.431a13.246 13.246 0 0 0-9.433-3.836zm0 24.4h-.005a11.06 11.06 0 0 1-5.636-1.543l-.404-.24-4.03 1.057 1.076-3.928-.263-.403a11.06 11.06 0 0 1-1.695-5.909c0-6.117 4.978-11.095 11.096-11.095a11.02 11.02 0 0 1 7.845 3.253 11.02 11.02 0 0 1 3.248 7.85c-.003 6.117-4.98 11.095-11.096 11.095zm6.088-8.309c-.334-.167-1.974-.973-2.28-1.084-.306-.111-.529-.166-.751.167-.222.334-.86 1.084-1.055 1.306-.194.223-.389.25-.723.084-.334-.167-1.409-.52-2.684-1.657-.992-.885-1.662-1.978-1.856-2.311-.194-.334-.021-.514.146-.68.15-.15.334-.39.5-.585.167-.195.223-.334.334-.556.111-.223.056-.418-.028-.585-.083-.167-.75-1.81-1.028-2.478-.271-.65-.546-.562-.75-.572l-.639-.011c-.222 0-.584.083-.89.417-.306.334-1.167 1.14-1.167 2.78s1.195 3.226 1.362 3.448c.167.223 2.353 3.593 5.702 5.038.797.344 1.418.55 1.902.704.799.254 1.526.218 2.101.132.641-.096 1.974-.807 2.252-1.587.278-.78.278-1.448.195-1.587-.084-.14-.306-.223-.639-.39z"/></svg>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main id="home">
+
+  <!-- ================= HERO + CALCULATOR ================= -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <span class="hero-eyebrow">GaLaBau Diwold · Speyer &amp; Umgebung</span>
+        <h1>Ihr Traumgarten.<br>Unsere Leidenschaft.</h1>
+        <p class="lead">Seit über 4 Jahren gestalten wir grüne Lebensräume – vom Reihenhausgarten bis zur Neugestaltung weitläufiger Areale. Von Speyer aus betreuen wir Privat- und Gewerbekunden im Umkreis von 50 km, größere Projekte nach Absprache.</p>
+        <ul class="hero-checks">
+          <li><span class="check-dot">✓</span> Kostenlose Erstberatung</li>
+          <li><span class="check-dot">✓</span> Schnelle Rückmeldung innerhalb von 24h</li>
+          <li><span class="check-dot">✓</span> Über 4 Jahre Erfahrung im Garten- &amp; Landschaftsbau</li>
+          <li><span class="check-dot">✓</span> Transparente Planung &amp; ehrliche Kalkulation</li>
+          <li><span class="check-dot">✓</span> Geschultes Team &amp; hochwertige Materialien</li>
+        </ul>
+      </div>
+
+      <div class="calc-card" id="gartenplaner">
+        <div class="calc-step-label">Schritt 1 — Ihre Leistungen</div>
+        <div class="tile-grid" id="tile-grid">
+          <div class="tile" data-service="pflaster" data-min="90" data-max="130" data-type="area">
+            <span class="tile-icon">▦</span>
+            <span class="tile-label">Pflasterarbeiten</span>
+          </div>
+          <div class="tile" data-service="terrasse" data-min="180" data-max="230" data-type="area">
+            <span class="tile-icon">◱</span>
+            <span class="tile-label">Terrassenbau</span>
+          </div>
+          <div class="tile" data-service="rollrasen" data-min="27" data-max="42" data-type="area">
+            <span class="tile-icon">▤</span>
+            <span class="tile-label">Rollrasen</span>
+          </div>
+          <div class="tile" data-service="erdarbeiten" data-min="800" data-max="1500" data-type="flat">
+            <span class="tile-icon">⛏</span>
+            <span class="tile-label">Erdarbeiten</span>
+          </div>
+          <div class="tile" data-service="hecke" data-min="400" data-max="900" data-type="flat">
+            <span class="tile-icon">❀</span>
+            <span class="tile-label">Hecke &amp; Pflege</span>
+          </div>
+        </div>
+
+        <div class="field-group">
+          <label class="calc-step-label" for="flaeche">Schritt 2 — Fläche in m²</label>
+          <input type="number" id="flaeche" name="flaeche" min="0" placeholder="z. B. 45">
+        </div>
+
+        <div class="field-group">
+          <div class="calc-step-label">Schritt 3 — Fotos von Ihrem Garten (optional)</div>
+          <div class="upload-dropzone" id="upload-dropzone-calc" tabindex="0" role="button" aria-label="Bilder hochladen">
+            <p class="upload-dropzone-text"><strong>Bilder hierher ziehen</strong> oder klicken zum Auswählen</p>
+            <p class="upload-hint">JPG, PNG oder WEBP · max. 5 Bilder · werden automatisch komprimiert</p>
+            <input type="file" id="upload-input-calc" class="upload-input" accept="image/png,image/jpeg,image/webp" multiple>
+          </div>
+          <div id="upload-error-calc" class="upload-error"></div>
+          <div class="upload-previews" id="upload-previews-calc"></div>
+        </div>
+
+        <div class="calc-result-box">
+          <div class="result-label">Unverbindliche Preisspanne</div>
+          <div class="result-value" id="result-value">ca. 0 €</div>
+        </div>
+
+        <button type="button" class="btn-primary" id="calc-cta">Kostenloses Angebot anfordern</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SERVICES ================= -->
+  <section id="leistungen">
+    <div class="wrap">
+      <div class="services-head reveal">
+        <span class="eyebrow">Leistungen</span>
+        <h2>Handwerk, das Ihren Garten trägt</h2>
+      </div>
+      <div class="bento-grid" id="services-grid">
+        <div class="bento-card bento-card--a reveal" style="background-image:url('terasse.png');">
+          <div class="bento-content">
+            <span class="bento-label">Kernleistung</span>
+            <h3>Terrassenbau</h3>
+            <p>Naturstein, Holz oder Keramik — für Außenbereiche, die Jahrzehnte halten.</p>
+          </div>
+        </div>
+        <div class="bento-card bento-card--b reveal" style="background-image:url('pflaster.png');">
+          <div class="bento-content">
+            <span class="bento-label">Kernleistung</span>
+            <h3>Pflasterarbeiten</h3>
+            <p>Einfahrten, Wege &amp; Hofflächen — sauber verlegt bis in die letzte Fuge.</p>
+          </div>
+        </div>
+        <div class="bento-card bento-card--c reveal" style="background-image:url('wege.png');">
+          <div class="bento-content">
+            <span class="bento-label">Erschließung</span>
+            <h3>Wege &amp; Treppen</h3>
+          </div>
+        </div>
+        <div class="bento-card bento-card--d reveal" style="background-image:url('https://plus.unsplash.com/premium_photo-1724701624563-a7bb454393c4?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');">
+          <div class="bento-content">
+            <span class="bento-label">Grünflächen</span>
+            <h3>Pflanzung &amp; Rasen</h3>
+          </div>
+        </div>
+        <div class="bento-card bento-card--e reveal" style="background-image:url('zaun.png');">
+          <div class="bento-content">
+            <span class="bento-label">Ausstattung</span>
+            <h3>Zäune &amp; Teiche</h3>
+          </div>
+        </div>
+        <div class="bento-card bento-card--f reveal" style="background-image:url('pflege.png');">
+          <div class="bento-content">
+            <span class="bento-label">Nachhaltig</span>
+            <h3>Pflege &amp; Nachhaltigkeit</h3>
+            <p>Regenwassermanagement &amp; insektenfreundliche Bepflanzung.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="philosophy-block reveal">
+        <p>Qualität vor Quantität: Wir planen transparent, kalkulieren fair und setzen termintreu um — mit geschultem Team, hochwertigen Materialien, sauberen Baustellen und klarer Kommunikation.</p>
+        <a href="#kontakt" class="btn-outline philosophy-cta">Unverbindlich über Ihr Projekt sprechen</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CALENDLY ================= -->
+  <section class="calendly-section">
+    <div class="wrap">
+      <div class="calendly-head reveal">
+        <span class="eyebrow" style="font-size:13px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-primary-light);display:block;margin-bottom:16px;">Beratung</span>
+        <h2>Beratungsgespräch direkt online buchen</h2>
+      </div>
+      <div class="calendly-embed-wrap reveal">
+        <!-- Calendly inline widget begin -->
+        <div class="calendly-inline-widget" data-url="https://calendly.com/philippdiwold" style="min-width:280px;height:700px;"></div>
+        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+        <!-- Calendly inline widget end -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section id="kontakt">
+    <div class="wrap">
+      <div class="contact-head reveal">
+        <span style="font-size:13px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--color-primary-light);display:block;margin-bottom:16px;">Kontakt</span>
+        <h2>Lassen Sie uns Ihr Projekt planen</h2>
+      </div>
+
+      <form id="contact-form" class="reveal" novalidate>
+        <div class="field-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="field-group">
+          <label for="email">E-Mail-Adresse</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="field-group">
+          <label for="telefon">Telefonnummer</label>
+          <input type="tel" id="telefon" name="telefon">
+        </div>
+        <div class="field-group">
+          <label for="plz">Postleitzahl (PLZ)</label>
+          <input type="text" id="plz" name="plz" inputmode="numeric" maxlength="5" required>
+          <div id="plz-error">Leider liegt Ihr Projekt außerhalb unseres aktuellen Einzugsgebiets (50 km um Römerberg).</div>
+        </div>
+        <div class="field-group">
+          <label for="herkunft">Wie sind Sie auf uns gekommen? (optional)</label>
+          <select id="herkunft" name="herkunft">
+            <option value="">Bitte auswählen...</option>
+            <option value="GaLaBau Website">GaLaBau Website</option>
+            <option value="Empfehlung">Empfehlung / Bekannte</option>
+            <option value="Social Media">Social Media (Instagram, etc.)</option>
+            <option value="Google Suche">Google Suche</option>
+            <option value="Flyer / Werbung">Flyer / Werbung</option>
+            <option value="Sonstiges">Sonstiges</option>
+          </select>
+        </div>
+        <div class="field-group">
+          <label for="nachricht">Projektdetails</label>
+          <textarea id="nachricht" name="nachricht" rows="5" required style="width:100%;padding:12px 4px;border:none;border-bottom:1.5px solid var(--color-border);background:transparent;font-size:15px;color:var(--color-text);outline:none;resize:vertical;"></textarea>
+        </div>
+
+        <div class="field-group">
+          <label>Fotos zum Projekt (optional)</label>
+          <div class="upload-dropzone" id="upload-dropzone" tabindex="0" role="button" aria-label="Bilder hochladen">
+            <p class="upload-dropzone-text"><strong>Bilder hierher ziehen</strong> oder klicken zum Auswählen</p>
+            <p class="upload-hint">JPG, PNG oder WEBP · max. 5 Bilder · werden automatisch komprimiert</p>
+            <input type="file" id="upload-input" class="upload-input" accept="image/png,image/jpeg,image/webp" multiple>
+          </div>
+          <div id="upload-error" class="upload-error"></div>
+          <div class="upload-previews" id="upload-previews"></div>
+        </div>
+
+        <button type="submit" class="btn-primary" id="submit-btn">Anfrage absenden</button>
+
+        <div class="form-feedback" id="form-feedback"></div>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer id="impressum">
+  <div class="wrap">
+    <div class="footer-head reveal">
+      <span class="eyebrow">Rechtliches</span>
+      <h2>Impressum.</h2>
+    </div>
+
+    <div class="impressum-grid reveal">
+      <div class="impressum-col">
+        <h3>Angaben gemäß § 5 DDG</h3>
+        <p>
+          GaLaBau Diwold<br>
+          Inhaber: Philipp Diwold<br>
+          Wacholderweg 9<br>
+          67346 Speyer<br>
+          Deutschland
+        </p>
+        <p><a href="https://www.galabau-diwold.de" class="impressum-link">www.galabau-diwold.de</a></p>
+
+        <h3>Kontakt</h3>
+        <p>
+          Telefon: +49 151 12769548<br>
+          E-Mail: info@galabau-diwold.de
+        </p>
+      </div>
+
+      <div class="impressum-col">
+        <h3>Verbraucherstreitbeilegung</h3>
+        <p>Wir sind weder bereit noch verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+
+        <h3>Haftung für Inhalte</h3>
+        <p>Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen.</p>
+
+        <h3>Urheberrecht</h3>
+        <p>Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede sonstige Verwertung außerhalb der Grenzen des Urheberrechts bedürfen der vorherigen schriftlichen Zustimmung des jeweiligen Urhebers beziehungsweise Erstellers.</p>
+      </div>
+    </div>
+
+    <div class="footer-social reveal">
+      <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram" class="social-icon-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+          <circle cx="12" cy="12" r="4.2"></circle>
+          <circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"></circle>
+        </svg>
+      </a>
+    </div>
+
+    <div class="footer-bottom">
+      &copy; <span id="year"></span> GaLaBau Diwold — Inh. Philipp Diwold · 67354 Römerberg
+      <div class="footer-legal-links">
+        <a href="#datenschutz" class="legal-page-link">Datenschutzerklärung</a>
+        <a href="#nutzungsbedingungen" class="legal-page-link">Nutzungsbedingungen</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= DATENSCHUTZERKLÄRUNG (eigene "Seite", technisch im selben Dokument) ================= -->
+<div class="legal-page" id="datenschutz">
+  <div class="legal-page-bar">
+    <a href="#home" class="legal-back-link legal-page-close">← Zurück zur Startseite</a>
+  </div>
+  <div class="legal-page-inner">
+    <h1>Datenschutzerklärung</h1>
+    <p class="legal-updated">Stand: Juli 2026</p>
+
+    <h2>1. Verantwortlicher</h2>
+    <p>
+      Verantwortlich für die Datenverarbeitung auf dieser Website ist:<br>
+      GaLaBau Diwold<br>
+      Inhaber: Philipp Diwold<br>
+      Wacholderweg 9<br>
+      67346 Speyer<br>
+      E-Mail: <a href="mailto:info@galabau-diwold.de">info@galabau-diwold.de</a><br>
+      Telefon: +49 151 12769548
+    </p>
+
+    <h2>2. Allgemeines zur Datenverarbeitung</h2>
+    <p>Wir verarbeiten personenbezogene Daten unserer Nutzer grundsätzlich nur, soweit dies zur Bereitstellung einer funktionsfähigen Website sowie unserer Inhalte und Leistungen erforderlich ist. Die Verarbeitung personenbezogener Daten erfolgt regelmäßig nur nach Einwilligung des Nutzers oder auf Basis einer anderen gesetzlichen Erlaubnis (z. B. Art. 6 Abs. 1 DSGVO).</p>
+
+    <h2>3. Hosting und Server-Logfiles</h2>
+    <p>Diese Website wird bei einem externen Hosting-Anbieter (Vercel Inc.) gehostet. Beim Aufruf der Website erhebt der Hosting-Anbieter automatisch technische Informationen, die Ihr Browser übermittelt (u. a. IP-Adresse, Datum und Uhrzeit des Zugriffs, aufgerufene Seite, verwendeter Browser). Diese Daten werden ausschließlich zur Sicherstellung eines störungsfreien Betriebs sowie zur Gewährleistung der Sicherheit unserer IT-Systeme verarbeitet (Art. 6 Abs. 1 lit. f DSGVO).</p>
+
+    <h2>4. Kontaktformular</h2>
+    <p>Wenn Sie uns über das Kontaktformular eine Anfrage zukommen lassen, werden die von Ihnen eingegebenen Daten (Name, E-Mail-Adresse, optional Telefonnummer, Postleitzahl, Projektbeschreibung sowie die im Gartenplaner-Rechner getroffene Auswahl) zum Zweck der Bearbeitung Ihrer Anfrage bei uns gespeichert und verarbeitet. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, da die Verarbeitung der Anbahnung eines Vertrags dient.</p>
+    <p>Der Versand erfolgt technisch über den E-Mail-Dienstleister <strong>Resend</strong>, der als Auftragsverarbeiter für uns tätig wird. Resend kann Server außerhalb der EU (u. a. in den USA) betreiben; in diesem Fall stellen geeignete Garantien (z. B. EU-Standardvertragsklauseln) ein angemessenes Datenschutzniveau sicher.</p>
+
+    <h3>Optionaler Bild-Upload</h3>
+    <p>Falls Sie über das Formular Fotos Ihres Gartens hochladen, werden diese direkt in Ihrem Browser automatisch verkleinert und komprimiert, bevor sie zusammen mit Ihrer Anfrage per E-Mail an uns übermittelt werden. Die Bilder werden nicht dauerhaft auf einem Server gespeichert, sondern lediglich zur Bearbeitung Ihrer Anfrage als E-Mail-Anhang weitergeleitet und anschließend wie Ihre übrige Anfrage behandelt.</p>
+
+    <h2>5. Terminbuchung über Calendly</h2>
+    <p>Zur Online-Terminvereinbarung binden wir den Dienst <strong>Calendly</strong> (Calendly LLC, USA) ein. Wenn Sie über dieses Formular einen Termin buchen, werden die von Ihnen eingegebenen Daten (z. B. Name, E-Mail-Adresse, gewünschter Termin) an Calendly übermittelt und dort verarbeitet. Es kann dabei zu einer Datenübermittlung in die USA kommen. Weitere Informationen finden Sie in der Datenschutzerklärung von Calendly: <a href="https://calendly.com/privacy" target="_blank" rel="noopener">calendly.com/privacy</a>.</p>
+
+    <h2>6. Chat-Funktion (Elfsight)</h2>
+    <p>Auf unserer Website nutzen wir ein Chat-Widget des Anbieters <strong>Elfsight</strong>. Beim Aufruf der Website wird eine Verbindung zu den Servern von Elfsight hergestellt; sofern Sie den Chat aktiv nutzen, werden die von Ihnen eingegebenen Informationen verarbeitet, um Ihre Anfrage zu beantworten. Weitere Hinweise finden Sie in der Datenschutzerklärung von Elfsight.</p>
+
+    <h2>7. Externe Links</h2>
+    <p>Unsere Website enthält Links zu Instagram und WhatsApp. Beim Anklicken verlassen Sie unsere Seite; für die Datenverarbeitung der jeweiligen Anbieter (Meta Platforms Ireland Limited) sind ausschließlich diese verantwortlich.</p>
+
+    <h2>8. Cookies</h2>
+    <p>Wir selbst setzen derzeit keine Analyse- oder Tracking-Cookies ein. Die eingebundenen Drittanbieter-Dienste (Calendly, Elfsight) können jedoch technisch bedingt eigene Cookies setzen, sobald deren Inhalte geladen oder genutzt werden. Sie können der Nutzung dieser Dienste widersprechen, indem Sie die entsprechenden Funktionen (Buchungskalender, Chat) nicht nutzen.</p>
+
+    <h2>9. Speicherdauer</h2>
+    <p>Wir speichern personenbezogene Daten aus Kontaktanfragen nur so lange, wie es zur Bearbeitung Ihrer Anfrage sowie zur Erfüllung etwaiger gesetzlicher Aufbewahrungspflichten erforderlich ist.</p>
+
+    <h2>10. Ihre Rechte</h2>
+    <p>Ihnen stehen gegenüber uns folgende Rechte hinsichtlich der Sie betreffenden personenbezogenen Daten zu:</p>
+    <ul>
+      <li>Recht auf Auskunft (Art. 15 DSGVO)</li>
+      <li>Recht auf Berichtigung (Art. 16 DSGVO)</li>
+      <li>Recht auf Löschung (Art. 17 DSGVO)</li>
+      <li>Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO)</li>
+      <li>Recht auf Datenübertragbarkeit (Art. 20 DSGVO)</li>
+      <li>Widerspruchsrecht gegen die Verarbeitung (Art. 21 DSGVO)</li>
+      <li>Recht auf Widerruf erteilter Einwilligungen (Art. 7 Abs. 3 DSGVO)</li>
+    </ul>
+    <p>Zudem haben Sie das Recht, sich bei einer Datenschutz-Aufsichtsbehörde über die Verarbeitung Ihrer personenbezogenen Daten zu beschweren.</p>
+
+    <h2>11. Datensicherheit</h2>
+    <p>Diese Website nutzt aus Sicherheitsgründen eine SSL- bzw. TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie an dem Schloss-Symbol in der Adresszeile Ihres Browsers.</p>
+
+    <h2>12. Aktualität und Änderung dieser Datenschutzerklärung</h2>
+    <p>Diese Datenschutzerklärung ist aktuell gültig. Durch die Weiterentwicklung unserer Website und Angebote oder aufgrund geänderter gesetzlicher Vorgaben kann es notwendig werden, diese Datenschutzerklärung anzupassen.</p>
+  </div>
+</div>
+
+<!-- ================= NUTZUNGSBEDINGUNGEN (eigene "Seite", technisch im selben Dokument) ================= -->
+<div class="legal-page" id="nutzungsbedingungen">
+  <div class="legal-page-bar">
+    <a href="#home" class="legal-back-link legal-page-close">← Zurück zur Startseite</a>
+  </div>
+  <div class="legal-page-inner">
+    <h1>Nutzungsbedingungen</h1>
+    <p class="legal-updated">Stand: Juli 2026</p>
+
+    <h2>1. Geltungsbereich</h2>
+    <p>Diese Nutzungsbedingungen gelten für die Nutzung der Website von GaLaBau Diwold (nachfolgend „wir" oder „Anbieter") unter der Domain galabau-diwold.de.</p>
+
+    <h2>2. Inhalte dieser Website</h2>
+    <p>Die auf dieser Website bereitgestellten Inhalte, insbesondere Texte, Bilder, Grafiken und der Gartenplaner-Rechner, dienen ausschließlich der allgemeinen Information über unsere Leistungen. Wir sind bemüht, die Inhalte stets aktuell und korrekt zu halten, übernehmen jedoch keine Gewähr für deren Richtigkeit, Vollständigkeit oder Aktualität.</p>
+
+    <h3>Gartenplaner-Rechner</h3>
+    <p>Die im Gartenplaner-Rechner angezeigte Preisspanne ist eine unverbindliche, automatisiert ermittelte Schätzung auf Basis Ihrer Angaben. Sie stellt kein rechtsverbindliches Angebot dar und ersetzt keine individuelle Vor-Ort-Beratung oder ein schriftliches Angebot unsererseits.</p>
+
+    <h2>3. Kontaktanfragen und Vertragsschluss</h2>
+    <p>Das Absenden einer Anfrage über unser Kontaktformular stellt lediglich eine unverbindliche Anfrage dar und begründet noch keinen Vertrag zwischen Ihnen und uns. Ein Vertragsverhältnis kommt erst durch ein gesondertes, von uns erstelltes schriftliches Angebot und dessen Annahme durch Sie zustande.</p>
+
+    <h2>4. Urheberrecht</h2>
+    <p>Die auf dieser Website veröffentlichten Inhalte unterliegen dem deutschen Urheberrecht. Jede Form der Vervielfältigung, Bearbeitung, Verbreitung oder sonstigen Nutzung außerhalb der gesetzlich zulässigen Grenzen bedarf der vorherigen schriftlichen Zustimmung des jeweiligen Urhebers bzw. Erstellers.</p>
+
+    <h2>5. Externe Links und Drittanbieter-Dienste</h2>
+    <p>Diese Website verweist auf bzw. bindet Dienste Dritter ein (u. a. Instagram, WhatsApp, Calendly, Elfsight). Für die Inhalte und die Verfügbarkeit dieser externen Angebote sind ausschließlich die jeweiligen Anbieter verantwortlich; wir machen uns deren Inhalte nicht zu eigen und übernehmen hierfür keine Haftung.</p>
+
+    <h2>6. Verfügbarkeit der Website</h2>
+    <p>Wir sind bemüht, die Website möglichst unterbrechungsfrei zugänglich zu halten, übernehmen jedoch keine Gewähr für eine ständige Verfügbarkeit oder Fehlerfreiheit, insbesondere bei technischen Störungen, Wartungsarbeiten oder höherer Gewalt.</p>
+
+    <h2>7. Haftung</h2>
+    <p>Wir haften unbeschränkt bei Vorsatz und grober Fahrlässigkeit sowie nach Maßgabe des Produkthaftungsgesetzes. Im Übrigen haften wir nur bei der Verletzung einer wesentlichen Vertragspflicht, deren Erfüllung die ordnungsgemäße Nutzung der Website überhaupt erst ermöglicht, begrenzt auf den vorhersehbaren, typischerweise eintretenden Schaden.</p>
+
+    <h2>8. Änderungen dieser Nutzungsbedingungen</h2>
+    <p>Wir behalten uns vor, diese Nutzungsbedingungen bei Bedarf anzupassen, etwa aufgrund geänderter rechtlicher Rahmenbedingungen oder Weiterentwicklungen unserer Website.</p>
+
+    <h2>9. Anwendbares Recht</h2>
+    <p>Es gilt das Recht der Bundesrepublik Deutschland.</p>
+
+    <h2>10. Kontakt</h2>
+    <p>Bei Fragen zu diesen Nutzungsbedingungen erreichen Sie uns unter <a href="mailto:info@galabau-diwold.de">info@galabau-diwold.de</a> oder telefonisch unter +49 151 12769548.</p>
+  </div>
+</div>
+
+<!-- Elfsight AI Chatbot | Untitled AI Chatbot -->
+<script src="https://elfsightcdn.com/platform.js" async></script>
+<div class="elfsight-app-d4d2eba2-6e62-4254-999b-95d78046ca49" data-elfsight-app-lazy></div>
+
+<script>
+(function(){
+
+  // ---------- RECHTLICHE SEITEN (Datenschutz / Nutzungsbedingungen) ----------
+  var legalPages = document.querySelectorAll('.legal-page');
+  var legalPageIds = ['datenschutz', 'nutzungsbedingungen'];
+
+  function zeigeLegalPageAusHash(){
+    var hash = window.location.hash.replace('#', '');
+    var istLegalPage = legalPageIds.indexOf(hash) !== -1;
+
+    legalPages.forEach(function(page){
+      page.classList.toggle('show', page.id === hash);
+    });
+    document.body.classList.toggle('legal-page-open', istLegalPage);
+
+    if(istLegalPage){
+      var aktuellePage = document.getElementById(hash);
+      if(aktuellePage) aktuellePage.scrollTop = 0;
+      window.scrollTo(0, 0);
+    }
+  }
+
+  document.querySelectorAll('.legal-page-link, .legal-page-close').forEach(function(link){
+    link.addEventListener('click', function(e){
+      // Normales Hash-Verhalten nutzen (funktioniert auch mit Zurück-Button des Browsers),
+      // nur zusätzlich sofort synchron umschalten für ein sofortiges "Seitenwechsel"-Gefühl.
+      setTimeout(zeigeLegalPageAusHash, 0);
+    });
+  });
+
+  window.addEventListener('hashchange', zeigeLegalPageAusHash);
+  zeigeLegalPageAusHash(); // Direktaufruf mit #datenschutz / #nutzungsbedingungen in der URL unterstützen
+
+  // ---------- SERVICE DATA ----------
+  var services = {}; // key -> {min,max,type,active}
+  var extraOptions = [];
+
+  var tiles = document.querySelectorAll('.tile');
+  tiles.forEach(function(tile){
+    tile.addEventListener('click', function(){
+      tile.classList.toggle('active');
+      updateCalculation();
+    });
+  });
+
+  var flaecheInput = document.getElementById('flaeche');
+  flaecheInput.addEventListener('input', updateCalculation);
+
+  function formatEuro(value){
+    return Math.round(value).toLocaleString('de-DE');
+  }
+
+  function updateCalculation(){
+    var flaeche = parseFloat(flaecheInput.value) || 0;
+    var minTotal = 0;
+    var maxTotal = 0;
+    var activeTiles = document.querySelectorAll('.tile.active');
+
+    activeTiles.forEach(function(tile){
+      var min = parseFloat(tile.dataset.min);
+      var max = parseFloat(tile.dataset.max);
+      var type = tile.dataset.type;
+
+      if(type === 'area'){
+        minTotal += min * flaeche;
+        maxTotal += max * flaeche;
+      } else {
+        minTotal += min;
+        maxTotal += max;
+      }
+    });
+
+    var resultEl = document.getElementById('result-value');
+    if(activeTiles.length === 0 || flaeche === 0 && Array.from(activeTiles).every(function(t){return t.dataset.type === 'area';})){
+      if(minTotal === 0 && maxTotal === 0){
+        resultEl.textContent = 'ca. 0 €';
+        return;
+      }
+    }
+    resultEl.textContent = 'ca. ' + formatEuro(minTotal) + ' € – ' + formatEuro(maxTotal) + ' €';
+  }
+
+  document.getElementById('calc-cta').addEventListener('click', function(){
+    document.getElementById('kontakt').scrollIntoView({behavior:'smooth'});
+  });
+
+  // ---------- FOOTER YEAR ----------
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ---------- SCROLL REVEAL ----------
+  (function(){
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Gestaffelte Verzögerung für die Leistungs-Kacheln
+    var servicesGrid = document.getElementById('services-grid');
+    if(servicesGrid){
+      var serviceItems = servicesGrid.querySelectorAll('.reveal');
+      serviceItems.forEach(function(item, i){
+        item.style.transitionDelay = (i * 90) + 'ms';
+      });
+    }
+
+    var revealEls = document.querySelectorAll('.reveal');
+
+    if(reduceMotion || typeof IntersectionObserver === 'undefined'){
+      revealEls.forEach(function(el){ el.classList.add('is-visible'); });
+      return;
+    }
+
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+    revealEls.forEach(function(el){ observer.observe(el); });
+  })();
+
+  // ---------- PLZ VALIDATION ----------
+  var validPrefixes = ['67','68','69','76'];
+  var plzInput = document.getElementById('plz');
+  var plzError = document.getElementById('plz-error');
+
+  function isPlzValid(value){
+    var digits = (value || '').trim();
+    if(digits.length < 2) return false;
+    var prefix = digits.substring(0,2);
+    return validPrefixes.indexOf(prefix) !== -1;
+  }
+
+  // ---------- BILD-UPLOAD (Drag & Drop + Komprimierung, mehrere synchronisierte Felder) ----------
+  var MAX_BILDER = 5;
+  var MAX_KANTENLAENGE = 1600;   // px, längste Seite nach Komprimierung
+  var JPEG_QUALITAET = 0.72;
+  var ausgewaehlteBilder = [];   // { id, dateiname, contentType, base64, status }
+
+  // Beide Upload-Felder (oben im Rechner & unten im Kontaktformular) teilen sich denselben Zustand.
+  var uploadInstanzen = [
+    {
+      dropzone: document.getElementById('upload-dropzone-calc'),
+      fileInput: document.getElementById('upload-input-calc'),
+      previewsWrap: document.getElementById('upload-previews-calc'),
+      uploadError: document.getElementById('upload-error-calc')
+    },
+    {
+      dropzone: document.getElementById('upload-dropzone'),
+      fileInput: document.getElementById('upload-input'),
+      previewsWrap: document.getElementById('upload-previews'),
+      uploadError: document.getElementById('upload-error')
+    }
+  ];
+
+  function zeigeUploadFehler(msg){
+    uploadInstanzen.forEach(function(inst){
+      inst.uploadError.textContent = msg;
+      inst.uploadError.classList.add('show');
+    });
+  }
+  function verstecktUploadFehler(){
+    uploadInstanzen.forEach(function(inst){
+      inst.uploadError.classList.remove('show');
+      inst.uploadError.textContent = '';
+    });
+  }
+
+  function komprimiereBild(file){
+    return new Promise(function(resolve, reject){
+      var img = new Image();
+      var reader = new FileReader();
+
+      reader.onload = function(e){
+        img.onload = function(){
+          var breite = img.width;
+          var hoehe = img.height;
+
+          if(breite > hoehe && breite > MAX_KANTENLAENGE){
+            hoehe = Math.round(hoehe * (MAX_KANTENLAENGE / breite));
+            breite = MAX_KANTENLAENGE;
+          } else if(hoehe > MAX_KANTENLAENGE){
+            breite = Math.round(breite * (MAX_KANTENLAENGE / hoehe));
+            hoehe = MAX_KANTENLAENGE;
+          }
+
+          var canvas = document.createElement('canvas');
+          canvas.width = breite;
+          canvas.height = hoehe;
+          var ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, breite, hoehe);
+
+          var dataUrl = canvas.toDataURL('image/jpeg', JPEG_QUALITAET);
+          resolve(dataUrl);
+        };
+        img.onerror = function(){ reject(new Error('Bild konnte nicht gelesen werden.')); };
+        img.src = e.target.result;
+      };
+      reader.onerror = function(){ reject(new Error('Datei konnte nicht gelesen werden.')); };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  // Rendert den gemeinsamen Zustand `ausgewaehlteBilder` in ALLE Vorschau-Container gleichzeitig.
+  function renderPreviews(){
+    uploadInstanzen.forEach(function(inst){
+      inst.previewsWrap.innerHTML = '';
+      ausgewaehlteBilder.forEach(function(bild){
+        var item = document.createElement('div');
+        item.className = 'upload-preview-item';
+
+        var img = document.createElement('img');
+        img.src = bild.base64 || '';
+        item.appendChild(img);
+
+        if(bild.status === 'wird komprimiert'){
+          var status = document.createElement('div');
+          status.className = 'upload-preview-status';
+          status.textContent = 'Komprimiere…';
+          item.appendChild(status);
+        }
+
+        var removeBtn = document.createElement('button');
+        removeBtn.type = 'button';
+        removeBtn.className = 'upload-preview-remove';
+        removeBtn.setAttribute('aria-label', 'Bild entfernen');
+        removeBtn.textContent = '×';
+        removeBtn.addEventListener('click', function(){
+          ausgewaehlteBilder = ausgewaehlteBilder.filter(function(b){ return b.id !== bild.id; });
+          renderPreviews();
+        });
+        item.appendChild(removeBtn);
+
+        inst.previewsWrap.appendChild(item);
+      });
+    });
+  }
+
+  function dateienHinzufuegen(fileList){
+    verstecktUploadFehler();
+    var dateien = Array.prototype.slice.call(fileList);
+
+    var erlaubteTypen = ['image/png', 'image/jpeg', 'image/webp'];
+    var freiePlaetze = MAX_BILDER - ausgewaehlteBilder.length;
+
+    if(freiePlaetze <= 0){
+      zeigeUploadFehler('Es können maximal ' + MAX_BILDER + ' Bilder hinzugefügt werden.');
+      return;
+    }
+
+    var zuVerarbeiten = dateien.filter(function(file){
+      if(erlaubteTypen.indexOf(file.type) === -1){
+        zeigeUploadFehler('Nur JPG, PNG oder WEBP werden unterstützt.');
+        return false;
+      }
+      return true;
+    }).slice(0, freiePlaetze);
+
+    if(dateien.length > zuVerarbeiten.length && erlaubteTypen.indexOf(dateien[0].type) !== -1){
+      zeigeUploadFehler('Es können maximal ' + MAX_BILDER + ' Bilder hinzugefügt werden. Einige Dateien wurden nicht übernommen.');
+    }
+
+    zuVerarbeiten.forEach(function(file){
+      var id = 'img_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6);
+      var eintrag = { id: id, dateiname: file.name, contentType: 'image/jpeg', base64: '', status: 'wird komprimiert' };
+      ausgewaehlteBilder.push(eintrag);
+      renderPreviews();
+
+      komprimiereBild(file).then(function(dataUrl){
+        eintrag.base64 = dataUrl;
+        eintrag.status = 'fertig';
+        renderPreviews();
+      }).catch(function(){
+        ausgewaehlteBilder = ausgewaehlteBilder.filter(function(b){ return b.id !== id; });
+        zeigeUploadFehler('"' + file.name + '" konnte nicht verarbeitet werden.');
+        renderPreviews();
+      });
+    });
+  }
+
+  // Klick-, Tastatur- und Drag&Drop-Verhalten für jedes Upload-Feld einzeln registrieren,
+  // aber alle schreiben in denselben gemeinsamen Zustand.
+  uploadInstanzen.forEach(function(inst){
+    inst.dropzone.addEventListener('click', function(){ inst.fileInput.click(); });
+    inst.dropzone.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        inst.fileInput.click();
+      }
+    });
+
+    inst.fileInput.addEventListener('change', function(){
+      dateienHinzufuegen(inst.fileInput.files);
+      inst.fileInput.value = '';
+    });
+
+    ['dragenter', 'dragover'].forEach(function(evtName){
+      inst.dropzone.addEventListener(evtName, function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        inst.dropzone.classList.add('dragover');
+      });
+    });
+    ['dragleave', 'drop'].forEach(function(evtName){
+      inst.dropzone.addEventListener(evtName, function(e){
+        e.preventDefault();
+        e.stopPropagation();
+        inst.dropzone.classList.remove('dragover');
+      });
+    });
+    inst.dropzone.addEventListener('drop', function(e){
+      if(e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length){
+        dateienHinzufuegen(e.dataTransfer.files);
+      }
+    });
+  });
+
+  // ---------- FORM SUBMIT (AJAX) ----------
+  var form = document.getElementById('contact-form');
+  var submitBtn = document.getElementById('submit-btn');
+  var feedback = document.getElementById('form-feedback');
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+
+    feedback.className = 'form-feedback';
+    feedback.textContent = '';
+    plzError.classList.remove('show');
+
+    if(!isPlzValid(plzInput.value)){
+      plzError.classList.add('show');
+      plzInput.focus();
+      return;
+    }
+
+    if(ausgewaehlteBilder.some(function(b){ return b.status === 'wird komprimiert'; })){
+      zeigeUploadFehler('Bitte warten Sie, bis alle Bilder verarbeitet wurden.');
+      return;
+    }
+
+    var originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Wird gesendet...';
+    submitBtn.disabled = true;
+
+    // Gartenplaner-Daten sammeln
+    var selectedServices = [];
+    document.querySelectorAll('.tile.active').forEach(function(tile){
+      selectedServices.push(tile.dataset.service);
+    });
+
+    var bilderFertig = ausgewaehlteBilder.filter(function(b){ return b.status === 'fertig' && b.base64; });
+
+    var payload = {
+      name: document.getElementById('name').value,
+      email: document.getElementById('email').value,
+      telefon: document.getElementById('telefon').value,
+      plz: plzInput.value,
+      quelle: document.getElementById('herkunft').value, // <-- HIER KORRIGIERT: quellen-Schlüssel wird nun korrekt ans Backend gesendet
+      nachricht: document.getElementById('nachricht').value,
+      leistungen: selectedServices.join(', '),
+      flaeche_m2: flaecheInput.value || '0',
+      preisspanne: document.getElementById('result-value').textContent,
+      bilder: bilderFertig.map(function(b, i){
+        return {
+          dateiname: (b.dateiname || ('bild-' + (i + 1))).replace(/\.[^/.]+$/, '') + '.jpg',
+          contentType: b.contentType,
+          base64: (b.base64 || '').split(',')[1] || ''
+        };
+      })
+    };
+
+    fetch('/api/senden', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(function(response){ return response.json(); })
+    .then(function(data){
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+
+      if(data.status === 'success'){
+        feedback.classList.add('show','success');
+        feedback.textContent = data.message;
+        form.reset();
+        document.querySelectorAll('.tile.active').forEach(function(t){ t.classList.remove('active'); });
+        updateCalculation();
+        ausgewaehlteBilder = [];
+        renderPreviews();
+        verstecktUploadFehler();
+      } else {
+        feedback.classList.add('show','error');
+        feedback.textContent = data.message || 'Es ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.';
+      }
+    })
+    .catch(function(){
+      submitBtn.textContent = originalText;
+      submitBtn.disabled = false;
+      feedback.classList.add('show','error');
+      feedback.textContent = 'Verbindungsfehler. Bitte versuchen Sie es später erneut.';
+    });
+  });
+
+})();
+</script>
+
+<!-- ================= COOKIE-BANNER ================= -->
+<div class="cookie-banner" id="cookie-banner">
+  <div class="cookie-banner-row">
+    <img src="cookie.png" alt="" class="cookie-banner-icon">
+    <div class="cookie-banner-text">
+      <p>Wir verwenden Cookies, um unsere Website optimal zu gestalten und fortlaufend zu verbessern. Einige sind technisch notwendig, andere helfen uns, die Nutzung der Website zu verstehen (Statistik). Weitere Infos finden Sie in unserer <a href="#datenschutz" class="legal-page-link">Datenschutzerklärung</a>.</p>
+    </div>
+  </div>
+
+  <div class="cookie-settings-panel" id="cookie-settings-panel">
+    <div class="cookie-settings-row">
+      <div class="cookie-settings-row-text">
+        <strong>Notwendige Cookies</strong>
+        <span>Erforderlich für die Grundfunktionen der Website. Können nicht deaktiviert werden.</span>
+      </div>
+      <label class="cookie-switch">
+        <input type="checkbox" checked disabled>
+        <span class="cookie-switch-track"></span>
+      </label>
+    </div>
+    <div class="cookie-settings-row">
+      <div class="cookie-settings-row-text">
+        <strong>Statistik-Cookies</strong>
+        <span>Helfen uns zu verstehen, wie Besucher die Website nutzen (Google Analytics).</span>
+      </div>
+      <label class="cookie-switch">
+        <input type="checkbox" id="cookie-toggle-analytics">
+        <span class="cookie-switch-track"></span>
+      </label>
+    </div>
+  </div>
+
+  <div class="cookie-banner-actions">
+    <button type="button" class="cookie-btn cookie-btn--ghost" id="cookie-settings-btn">Einstellungen</button>
+    <button type="button" class="cookie-btn cookie-btn--ghost" id="cookie-reject-btn">Ablehnen</button>
+    <button type="button" class="cookie-btn cookie-btn--accept" id="cookie-accept-btn">Akzeptieren</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var COOKIE_KEY = 'galabau_cookie_consent'; // { analytics: true|false, ts: <timestamp> }
+
+  var banner = document.getElementById('cookie-banner');
+  var settingsPanel = document.getElementById('cookie-settings-panel');
+  var settingsBtn = document.getElementById('cookie-settings-btn');
+  var rejectBtn = document.getElementById('cookie-reject-btn');
+  var acceptBtn = document.getElementById('cookie-accept-btn');
+  var analyticsToggle = document.getElementById('cookie-toggle-analytics');
+
+  function ladeConsent(){
+    try {
+      var raw = localStorage.getItem(COOKIE_KEY);
+      return raw ? JSON.parse(raw) : null;
+    } catch(e){ return null; }
+  }
+
+  function speichereConsent(analyticsErlaubt){
+    try {
+      localStorage.setItem(COOKIE_KEY, JSON.stringify({ analytics: analyticsErlaubt, ts: Date.now() }));
+    } catch(e){ /* localStorage evtl. nicht verfügbar (z. B. Privatmodus) */ }
+  }
+
+  function wendeConsentAn(analyticsErlaubt){
+    if(typeof gtag === 'function'){
+      gtag('consent', 'update', {
+        analytics_storage: analyticsErlaubt ? 'granted' : 'denied'
+      });
+    }
+  }
+
+  function bannerVerstecken(){
+    banner.classList.remove('show');
+    settingsPanel.classList.remove('show');
+  }
+
+  var gespeicherterConsent = ladeConsent();
+  if(gespeicherterConsent){
+    // Entscheidung liegt bereits vor -> Banner nicht erneut zeigen, Consent direkt anwenden
+    wendeConsentAn(!!gespeicherterConsent.analytics);
+  } else {
+    // Erster Besuch -> Banner anzeigen
+    banner.classList.add('show');
+  }
+
+  settingsBtn.addEventListener('click', function(){
+    settingsPanel.classList.toggle('show');
+  });
+
+  acceptBtn.addEventListener('click', function(){
+    speichereConsent(true);
+    wendeConsentAn(true);
+    bannerVerstecken();
+  });
+
+  rejectBtn.addEventListener('click', function(){
+    speichereConsent(false);
+    wendeConsentAn(false);
+    bannerVerstecken();
+  });
+
+  analyticsToggle.addEventListener('change', function(){
+    var analyticsErlaubt = analyticsToggle.checked;
+    speichereConsent(analyticsErlaubt);
+    wendeConsentAn(analyticsErlaubt);
+    bannerVerstecken();
+  });
+})();
+</script>
+
+</body>
+</html>
