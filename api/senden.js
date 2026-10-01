@@ -4,8 +4,8 @@
  * Validiert die eingehenden Daten und verschickt die Anfrage per E-Mail über Resend.
  */
 
-// PLZ-Präfixe im 50-km-Radius um Römerberg (Pfalz)
-const VALID_PLZ_PREFIXES = ['67', '68', '69', '76'];
+// PLZ-Prüfung: Format, Existenz und Luftlinien-Entfernung zu Römerberg (siehe api/_lib/plz.js)
+const { pruefePlz, RADIUS_KM } = require('./_lib/plz');
 
 // Ziel-E-Mail-Adresse, an die Anfragen gehen
 const EMPFAENGER = 'info@galabau-diwold.de';
@@ -93,14 +93,33 @@ module.exports = async (req, res) => {
       return;
     }
 
-    // Serverseitige PLZ-Umkreisprüfung (zusätzlich zur Frontend-Prüfung)
-    const plzPrefix = plz.substring(0, 2);
-    if (!plz || !VALID_PLZ_PREFIXES.includes(plzPrefix)) {
+    // Serverseitige PLZ-Prüfung.
+    // Hart abgelehnt wird nur eine unvollständige oder nicht existierende PLZ.
+    // Liegt der Ort außerhalb des Umkreises, wird die Anfrage trotzdem angenommen und
+    // in der E-Mail zur manuellen Bewertung markiert (größere Projekte nach Absprache).
+    const plzErgebnis = pruefePlz(plz);
+    if (plzErgebnis.status === 'format' || plzErgebnis.status === 'unbekannt') {
       res.status(400).json({
         status: 'error',
-        message: 'Leider liegt Ihr Projekt außerhalb unseres aktuellen Einzugsgebiets (50 km um Römerberg).'
+        message: 'Bitte geben Sie eine gültige, fünfstellige Postleitzahl ein.'
       });
       return;
+    }
+
+    const ausserhalb = plzErgebnis.status === 'ausserhalb';
+    const entfernungUnsicher = plzErgebnis.status === 'unsicher';
+
+    let plzHinweis;      // Zeile im E-Mail-Text
+    let betreffMarker;   // Zusatz im Betreff, damit die Anfrage im Postfach sofort auffällt
+    if (ausserhalb) {
+      plzHinweis = `ca. ${plzErgebnis.km} km Luftlinie ab Römerberg – AUSSERHALB des ${RADIUS_KM}-km-Gebiets. Bitte manuell bewerten (größeres Projekt nach Absprache?).`;
+      betreffMarker = ` [außerhalb ${RADIUS_KM} km: ca. ${plzErgebnis.km} km]`;
+    } else if (entfernungUnsicher) {
+      plzHinweis = 'nicht automatisch ermittelbar (Sonder-PLZ ohne verlässliche Koordinaten) – bitte manuell prüfen.';
+      betreffMarker = ' [Entfernung prüfen]';
+    } else {
+      plzHinweis = `ca. ${plzErgebnis.km} km Luftlinie ab Römerberg – innerhalb des ${RADIUS_KM}-km-Gebiets.`;
+      betreffMarker = '';
     }
 
     // Flächenangabe für die E-Mail: bevorzugt die Aufschlüsselung je Leistung,
@@ -119,7 +138,8 @@ module.exports = async (req, res) => {
       `Name:             ${name}`,
       `E-Mail:           ${email}`,
       `Telefon:          ${telefon || '(nicht angegeben)'}`,
-      `PLZ:              ${plz}`,
+      `PLZ:              ${plzErgebnis.plz}`,
+      `Entfernung:       ${plzHinweis}`,
       `Aufmerksam durch: ${quelle || '(nicht angegeben)'}`,
       '',
       'PROJEKTDETAILS',
@@ -154,7 +174,7 @@ module.exports = async (req, res) => {
         from: 'GaLaBau Diwold Website <anfrage@galabau-diwold.de>',
         to: [EMPFAENGER],
         reply_to: email,
-        subject: 'Neue Anfrage über die Website – GaLaBau Diwold',
+        subject: `Neue Anfrage über die Website – GaLaBau Diwold${betreffMarker}`,
         text: textBody,
         ...(bildAnhaenge.length > 0 ? { attachments: bildAnhaenge } : {})
       })
@@ -170,9 +190,13 @@ module.exports = async (req, res) => {
       return;
     }
 
+    const erfolgsText = ausserhalb
+      ? `Ihre Nachricht wurde erfolgreich übermittelt. Ihr Projekt liegt außerhalb unseres üblichen Einsatzgebiets (${RADIUS_KM} km um Römerberg). Größere Projekte übernehmen wir nach Absprache – wir prüfen Ihre Anfrage und melden uns persönlich bei Ihnen.`
+      : 'Ihre Nachricht wurde erfolgreich übermittelt.';
+
     res.status(200).json({
       status: 'success',
-      message: 'Ihre Nachricht wurde erfolgreich übermittelt.'
+      message: erfolgsText
     });
 
   } catch (err) {
