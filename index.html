@@ -587,12 +587,15 @@
   }
   .cookie-btn:hover{transform:translateY(-2px);}
   .cookie-btn--ghost:hover{background:var(--color-secondary-alt);}
-  .cookie-btn--accept{
+  /* Akzeptieren und Ablehnen sind bewusst gleich gestaltet (kein Nudging) */
+  .cookie-btn--accept,
+  .cookie-btn--reject{
     background:var(--color-primary);
     color:#fff;
     border:1px solid var(--color-primary);
   }
-  .cookie-btn--accept:hover{background:var(--color-primary-light);}
+  .cookie-btn--accept:hover,
+  .cookie-btn--reject:hover{background:var(--color-primary-light);}
 
   .cookie-settings-panel{
     display:none;
@@ -1892,7 +1895,7 @@
 
   <div class="cookie-banner-actions">
     <button type="button" class="cookie-btn cookie-btn--ghost" id="cookie-settings-btn">Einstellungen</button>
-    <button type="button" class="cookie-btn cookie-btn--ghost" id="cookie-reject-btn">Ablehnen</button>
+    <button type="button" class="cookie-btn cookie-btn--reject" id="cookie-reject-btn">Ablehnen</button>
     <button type="button" class="cookie-btn cookie-btn--accept" id="cookie-accept-btn">Akzeptieren</button>
   </div>
 </div>
