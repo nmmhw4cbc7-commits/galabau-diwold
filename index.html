@@ -28,7 +28,7 @@
 <title>GaLaBau Diwold — Garten- und Landschaftsbau in der Pfalz</title>
 <meta name="description" content="GaLaBau Diwold – Garten- und Landschaftsbau in Speyer. Seit über 4 Jahren gestalten wir Terrassen, Wege, Pflasterarbeiten, Pflanzkonzepte und mehr für Privat- und Gewerbekunden im Umkreis von 50 km.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Crect%20width='100'%20height='100'%20rx='22'%20fill='%231b4332'/%3E%3Cpath%20d='M50%2010%20C50%2010%2030%2034%2030%2050%20C30%2061%2038%2069%2048%2070%20L44%2088%20L56%2088%20L52%2070%20C62%2069%2070%2061%2070%2050%20C70%2034%2050%2010%2050%2010%20Z'%20fill='%23f4f1ea'/%3E%3C/svg%3E">
-<meta name="description" content="GaLaBau Diwold – Garten- und Landschaftsbau in Speyer. Seit über 4 Jahren gestalten wir Terrassen, Wege, Pflasterarbeiten, Pflanzkonzepte und mehr für Privat-[...]
+<meta name="description" content="GaLaBau Diwold – Garten- und Landschaftsbau in Speyer. Seit über 4 Jahren gestalten wir Terrassen, Wege, Pflasterarbeiten, Pflanzkonzepte und mehr für Privat- und Gewerbekunden im Umkreis von 50 km.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20100%20100'%3E%3Crect%20width='100'%20height='100'%20rx='22'%20fill='%231b4332'%3E%3C/rect%3E%3Cpath%20d='M25%2035h50v35H25z'%20fill='none'%20stroke='%23fff'%20stroke-width='2.5'%20stroke-linejoin='round'/%3E%3Cpath%20d='M25%2035l25%2018.75L75%2035'%20fill='none'%20stroke='%23fff'%20stroke-width='2.5'%20stroke-linejoin='round'/%3E%3C/svg%3E">
 <style>
 
@@ -322,6 +322,21 @@
   .field-group input:focus,
   .field-group select:focus{border-bottom-color:var(--color-primary);}
 
+  /* Flächenfelder je Leistung */
+  .area-hint{
+    font-size:13.5px;
+    color:var(--color-text-soft);
+    margin:0;
+  }
+  .area-hint[hidden]{display:none;}
+  #area-fields .area-row{margin-bottom:18px;}
+  #area-fields .area-row:last-child{margin-bottom:0;}
+  #area-fields .area-row label{
+    font-size:13px;
+    font-weight:600;
+    margin-bottom:2px;
+  }
+
   .checkbox-row{
     display:flex;
     align-items:flex-start;
@@ -341,7 +356,7 @@
     color:#fff;
     border-radius:10px;
     padding:20px 22px;
-    margin-bottom:22px;
+    margin-bottom:14px;
   }
   .calc-result-box .result-label{
     font-size:12px;
@@ -354,6 +369,26 @@
     font-size:26px;
     font-weight:700;
     letter-spacing:-0.02em;
+  }
+  .calc-result-box .result-value.is-placeholder{
+    font-size:18px;
+    font-weight:600;
+    letter-spacing:0;
+    opacity:0.92;
+  }
+  .calc-result-box .result-sub{
+    display:none;
+    font-size:13px;
+    line-height:1.45;
+    opacity:0.88;
+    margin-top:8px;
+  }
+  .calc-result-box .result-sub.show{display:block;}
+  .calc-note{
+    font-size:12.5px;
+    line-height:1.55;
+    color:var(--color-text-soft);
+    margin:0 0 22px;
   }
 
   .btn-primary{
@@ -1115,7 +1150,8 @@
             <span class="tile-icon">▤</span>
             <span class="tile-label">Rollrasen</span>
           </div>
-          <div class="tile" data-service="erdarbeiten" data-min="800" data-max="1500" data-type="flat">
+          <!-- Erdarbeiten: Aufwand hängt stark vom Umfang ab -> keine Pauschale, Preis nach Besichtigung -->
+          <div class="tile" data-service="erdarbeiten" data-type="quote">
             <span class="tile-icon">⛏</span>
             <span class="tile-label">Erdarbeiten</span>
           </div>
@@ -1126,8 +1162,9 @@
         </div>
 
         <div class="field-group">
-          <label class="calc-step-label" for="flaeche">Schritt 2 — Fläche in m²</label>
-          <input type="number" id="flaeche" name="flaeche" min="0" placeholder="z. B. 45">
+          <div class="calc-step-label">Schritt 2 — Fläche je Leistung in m²</div>
+          <p class="area-hint" id="area-hint">Wählen Sie zuerst eine Leistung aus.</p>
+          <div id="area-fields"></div>
         </div>
 
         <div class="field-group">
@@ -1141,10 +1178,13 @@
           <div class="upload-previews" id="upload-previews-calc"></div>
         </div>
 
-        <div class="calc-result-box">
+        <div class="calc-result-box" aria-live="polite">
           <div class="result-label">Unverbindliche Preisspanne</div>
-          <div class="result-value" id="result-value">ca. 0 €</div>
+          <div class="result-value is-placeholder" id="result-value">Leistung und Fläche auswählen</div>
+          <div class="result-sub" id="result-sub"></div>
         </div>
+        <!-- TODO: Kalkulationsgrundlage mit Philipp abstimmen (Text steht in PREIS_HINWEIS im Script) -->
+        <p class="calc-note" id="calc-note"></p>
 
         <button type="button" class="btn-primary" id="calc-cta">Kostenloses Angebot anfordern</button>
       </div>
@@ -1481,54 +1521,167 @@
   window.addEventListener('hashchange', zeigeLegalPageAusHash);
   zeigeLegalPageAusHash(); // Direktaufruf mit #datenschutz / #nutzungsbedingungen in der URL unterstützen
 
-  // ---------- SERVICE DATA ----------
-  var services = {}; // key -> {min,max,type,active}
-  var extraOptions = [];
+  // ---------- PREISRECHNER ----------
+  // TODO (mit Philipp abstimmen): Was die Richtwerte tatsächlich enthalten.
+  // Dieser Text steht direkt unter dem Ergebnis. Bitte an die echte Kalkulation anpassen.
+  var PREIS_HINWEIS = 'Richtwerte inkl. Material, Unterbau und Arbeitsleistung sowie 19 % Umsatzsteuer. ' +
+                      'Aushub und Entsorgung sind nicht enthalten und werden im Angebot gesondert ausgewiesen. ' +
+                      'Die genaue Summe ermitteln wir nach Besichtigung.';
+  document.getElementById('calc-note').textContent = PREIS_HINWEIS;
+
+  var PLATZHALTER_TEXT = 'Leistung und Fläche auswählen';
 
   var tiles = document.querySelectorAll('.tile');
-  tiles.forEach(function(tile){
-    tile.addEventListener('click', function(){
-      tile.classList.toggle('active');
-      updateCalculation();
-    });
-  });
+  var areaFieldsEl = document.getElementById('area-fields');
+  var areaHintEl = document.getElementById('area-hint');
+  var resultEl = document.getElementById('result-value');
+  var resultSubEl = document.getElementById('result-sub');
+  var areas = {};            // service -> eingegebene Fläche (String), bleibt beim Ab-/Anwählen erhalten
+  var aktuellePreisspanne = ''; // Klartext der zuletzt berechneten Spanne ('' = keine gültige Spanne)
 
-  var flaecheInput = document.getElementById('flaeche');
-  flaecheInput.addEventListener('input', updateCalculation);
+  function tileLabel(tile){
+    return tile.querySelector('.tile-label').textContent.trim();
+  }
+
+  function parseFlaeche(value){
+    var n = parseFloat(String(value || '').replace(',', '.'));
+    return (isFinite(n) && n > 0) ? n : 0;
+  }
 
   function formatEuro(value){
     return Math.round(value).toLocaleString('de-DE');
   }
 
+  // Baut für jede aktive, flächenbezogene Leistung ein eigenes Eingabefeld.
+  function renderAreaFields(){
+    areaFieldsEl.innerHTML = '';
+    var aktive = document.querySelectorAll('.tile.active');
+    var flaechenTiles = Array.prototype.filter.call(aktive, function(t){ return t.dataset.type === 'area'; });
+
+    if(aktive.length === 0){
+      areaHintEl.textContent = 'Wählen Sie zuerst eine Leistung aus.';
+      areaHintEl.hidden = false;
+    } else if(flaechenTiles.length === 0){
+      areaHintEl.textContent = 'Für die gewählten Leistungen ist keine Flächenangabe nötig.';
+      areaHintEl.hidden = false;
+    } else {
+      areaHintEl.hidden = true;
+    }
+
+    flaechenTiles.forEach(function(tile){
+      var key = tile.dataset.service;
+      var row = document.createElement('div');
+      row.className = 'field-group area-row';
+
+      var label = document.createElement('label');
+      label.setAttribute('for', 'flaeche-' + key);
+      label.textContent = tileLabel(tile) + ' (m²)';
+
+      var input = document.createElement('input');
+      input.type = 'number';
+      input.id = 'flaeche-' + key;
+      input.name = 'flaeche-' + key;
+      input.min = '0';
+      input.step = 'any';
+      input.inputMode = 'decimal';
+      input.placeholder = 'z. B. 45';
+      input.value = areas[key] || '';
+      input.addEventListener('input', function(){
+        areas[key] = input.value;
+        updateCalculation();
+      });
+
+      row.appendChild(label);
+      row.appendChild(input);
+      areaFieldsEl.appendChild(row);
+    });
+  }
+
+  function zeigeErgebnis(text, istPlatzhalter, sub){
+    resultEl.textContent = text;
+    resultEl.classList.toggle('is-placeholder', !!istPlatzhalter);
+    if(sub){
+      resultSubEl.textContent = sub;
+      resultSubEl.classList.add('show');
+    } else {
+      resultSubEl.textContent = '';
+      resultSubEl.classList.remove('show');
+    }
+  }
+
   function updateCalculation(){
-    var flaeche = parseFloat(flaecheInput.value) || 0;
+    var aktive = document.querySelectorAll('.tile.active');
     var minTotal = 0;
     var maxTotal = 0;
-    var activeTiles = document.querySelectorAll('.tile.active');
+    var fehlendeFlaechen = [];
+    var hatAnfrageLeistung = false; // Leistung ohne Festpreis (Erdarbeiten)
+    var preisBausteine = 0;
 
-    activeTiles.forEach(function(tile){
+    aktuellePreisspanne = '';
+
+    if(aktive.length === 0){
+      zeigeErgebnis(PLATZHALTER_TEXT, true);
+      return;
+    }
+
+    aktive.forEach(function(tile){
+      var type = tile.dataset.type;
       var min = parseFloat(tile.dataset.min);
       var max = parseFloat(tile.dataset.max);
-      var type = tile.dataset.type;
 
       if(type === 'area'){
-        minTotal += min * flaeche;
-        maxTotal += max * flaeche;
-      } else {
+        var flaeche = parseFlaeche(areas[tile.dataset.service]);
+        if(flaeche > 0){
+          minTotal += min * flaeche;
+          maxTotal += max * flaeche;
+          preisBausteine++;
+        } else {
+          fehlendeFlaechen.push(tileLabel(tile));
+        }
+      } else if(type === 'flat'){
         minTotal += min;
         maxTotal += max;
+        preisBausteine++;
+      } else if(type === 'quote'){
+        hatAnfrageLeistung = true;
       }
     });
 
-    var resultEl = document.getElementById('result-value');
-    if(activeTiles.length === 0 || flaeche === 0 && Array.from(activeTiles).every(function(t){return t.dataset.type === 'area';})){
-      if(minTotal === 0 && maxTotal === 0){
-        resultEl.textContent = 'ca. 0 €';
-        return;
-      }
+    // Unvollständige Eingabe: keine (teilweise) Preisspanne anzeigen
+    if(fehlendeFlaechen.length > 0){
+      zeigeErgebnis(PLATZHALTER_TEXT, true, 'Fläche fehlt noch für: ' + fehlendeFlaechen.join(', '));
+      return;
     }
-    resultEl.textContent = 'ca. ' + formatEuro(minTotal) + ' € – ' + formatEuro(maxTotal) + ' €';
+
+    if(preisBausteine === 0 && hatAnfrageLeistung){
+      aktuellePreisspanne = 'Preis nach Besichtigung';
+      zeigeErgebnis('Preis nach Besichtigung', false, 'Erdarbeiten kalkulieren wir nach Umfang und Bodenverhältnissen vor Ort.');
+      return;
+    }
+
+    if(preisBausteine > 0 && maxTotal > 0){
+      aktuellePreisspanne = 'ca. ' + formatEuro(minTotal) + ' € – ' + formatEuro(maxTotal) + ' €';
+      zeigeErgebnis(
+        aktuellePreisspanne,
+        false,
+        hatAnfrageLeistung ? 'zzgl. Erdarbeiten: Preis nach Besichtigung' : ''
+      );
+      return;
+    }
+
+    zeigeErgebnis(PLATZHALTER_TEXT, true);
   }
+
+  tiles.forEach(function(tile){
+    tile.addEventListener('click', function(){
+      tile.classList.toggle('active');
+      renderAreaFields();
+      updateCalculation();
+    });
+  });
+
+  renderAreaFields();
+  updateCalculation();
 
   document.getElementById('calc-cta').addEventListener('click', function(){
     document.getElementById('kontakt').scrollIntoView({behavior:'smooth'});
@@ -1792,10 +1945,20 @@
     submitBtn.textContent = 'Wird gesendet...';
     submitBtn.disabled = true;
 
-    // Gartenplaner-Daten sammeln
+    // Gartenplaner-Daten sammeln (Leistung + jeweilige Fläche)
     var selectedServices = [];
+    var flaechenDetails = [];
+    var flaechenSumme = 0;
     document.querySelectorAll('.tile.active').forEach(function(tile){
-      selectedServices.push(tile.dataset.service);
+      var key = tile.dataset.service;
+      selectedServices.push(key);
+      if(tile.dataset.type === 'area'){
+        var f = parseFlaeche(areas[key]);
+        if(f > 0){
+          flaechenSumme += f;
+          flaechenDetails.push(tileLabel(tile) + ': ' + f + ' m²');
+        }
+      }
     });
 
     var bilderFertig = ausgewaehlteBilder.filter(function(b){ return b.status === 'fertig' && b.base64; });
@@ -1805,11 +1968,12 @@
       email: document.getElementById('email').value,
       telefon: document.getElementById('telefon').value,
       plz: plzInput.value,
-      quelle: document.getElementById('herkunft').value, // <-- HIER KORRIGIERT: quellen-Schlüssel wird nun korrekt ans Backend gesendet
+      quelle: document.getElementById('herkunft').value,
       nachricht: document.getElementById('nachricht').value,
       leistungen: selectedServices.join(', '),
-      flaeche_m2: flaecheInput.value || '0',
-      preisspanne: document.getElementById('result-value').textContent,
+      flaeche_m2: String(flaechenSumme || 0),           // Summe aller Flächen (Rückwärtskompatibilität)
+      flaechen_details: flaechenDetails.join('; '),     // NEU: Fläche je Leistung
+      preisspanne: aktuellePreisspanne || 'Keine Preisspanne ermittelt',
       bilder: bilderFertig.map(function(b, i){
         return {
           dateiname: (b.dateiname || ('bild-' + (i + 1))).replace(/\.[^/.]+$/, '') + '.jpg',
@@ -1836,6 +2000,8 @@
         feedback.textContent = data.message;
         form.reset();
         document.querySelectorAll('.tile.active').forEach(function(t){ t.classList.remove('active'); });
+        areas = {};
+        renderAreaFields();
         updateCalculation();
         ausgewaehlteBilder = [];
         renderPreviews();
