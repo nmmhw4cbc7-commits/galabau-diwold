@@ -803,6 +803,12 @@
     font-weight:500;
   }
   #plz-error.show{display:block;}
+  .field-hint{
+    font-size:12.5px;
+    color:var(--color-text-soft);
+    line-height:1.5;
+    margin-top:8px;
+  }
 
   .form-feedback{
     display:none;
@@ -1270,8 +1276,9 @@
         </div>
         <div class="field-group">
           <label for="plz">Postleitzahl (PLZ)</label>
-          <input type="text" id="plz" name="plz" inputmode="numeric" maxlength="5" required>
-          <div id="plz-error">Leider liegt Ihr Projekt außerhalb unseres aktuellen Einzugsgebiets (50 km um Römerberg).</div>
+          <input type="text" id="plz" name="plz" inputmode="numeric" autocomplete="postal-code" maxlength="5" pattern="[0-9]{5}" aria-describedby="plz-hint plz-error" required>
+          <div id="plz-hint" class="field-hint">Unser Einsatzgebiet: 50 km um Römerberg. Liegt Ihr Projekt weiter entfernt, senden Sie uns Ihre Anfrage trotzdem – größere Projekte übernehmen wir nach Absprache.</div>
+          <div id="plz-error" role="alert">Bitte geben Sie eine gültige, fünfstellige Postleitzahl ein.</div>
         </div>
         <div class="field-group">
           <label for="herkunft">Wie sind Sie auf uns gekommen? (optional)</label>
@@ -1723,16 +1730,22 @@
   })();
 
   // ---------- PLZ VALIDATION ----------
-  var validPrefixes = ['67','68','69','76'];
   var plzInput = document.getElementById('plz');
   var plzError = document.getElementById('plz-error');
 
+  // Nur vollständige, fünfstellige Postleitzahlen sind gültig. Ob die PLZ wirklich existiert und
+  // wie weit sie von Römerberg entfernt ist, prüft der Server (api/senden.js). Anfragen außerhalb
+  // der 50 km werden dort nicht abgelehnt, sondern zur manuellen Bewertung markiert.
   function isPlzValid(value){
-    var digits = (value || '').trim();
-    if(digits.length < 2) return false;
-    var prefix = digits.substring(0,2);
-    return validPrefixes.indexOf(prefix) !== -1;
+    return /^[0-9]{5}$/.test((value || '').trim());
   }
+
+  // Beim Tippen alles außer Ziffern entfernen und Fehlermeldung ausblenden
+  plzInput.addEventListener('input', function(){
+    var bereinigt = plzInput.value.replace(/\D/g, '').substring(0, 5);
+    if(bereinigt !== plzInput.value) plzInput.value = bereinigt;
+    plzError.classList.remove('show');
+  });
 
   // ---------- BILD-UPLOAD (Drag & Drop + Komprimierung, mehrere synchronisierte Felder) ----------
   var MAX_BILDER = 5;
