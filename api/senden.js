@@ -74,11 +74,11 @@ module.exports = async (req, res) => {
     const telefon = cleanInput(body.telefon);
     const plz = cleanInput(body.plz);
     const nachricht = cleanInput(body.nachricht);
-    const quelle = cleanInput(body.quelle); // <-- NEU: Quelle aus dem Formular auslesen
+    const quelle = cleanInput(body.quelle);
 
     const leistungen = cleanInput(body.leistungen);
-    const flaeche = cleanInput(body.flaeche_m2);
-    const zusatzleistungen = cleanInput(body.zusatzleistungen);
+    const flaeche = cleanInput(body.flaeche_m2);               // Summe aller Flächen
+    const flaechenDetails = cleanInput(body.flaechen_details); // Fläche je Leistung, z. B. "Pflasterarbeiten: 40 m²; Rollrasen: 80 m²"
     const preisspanne = cleanInput(body.preisspanne);
 
     // Bild-Anhänge aus dem Kontaktformular (Drag & Drop, bereits im Browser komprimiert)
@@ -103,6 +103,12 @@ module.exports = async (req, res) => {
       return;
     }
 
+    // Flächenangabe für die E-Mail: bevorzugt die Aufschlüsselung je Leistung,
+    // sonst die Summe (das Frontend sendet '0', wenn keine Fläche angegeben wurde)
+    const flaecheText = flaechenDetails
+      ? flaechenDetails
+      : (flaeche && flaeche !== '0' ? `${flaeche} m² (gesamt)` : '(nicht angegeben)');
+
     // E-Mail-Inhalt zusammenstellen
     const textBody = [
       'Es ist eine neue Anfrage über das Kontaktformular der Website eingegangen.',
@@ -110,11 +116,11 @@ module.exports = async (req, res) => {
       '',
       'KUNDENDATEN',
       '--------------------------------------------------------',
-      `Name:            ${name}`,
-      `E-Mail:          ${email}`,
-      `Telefon:         ${telefon || '(nicht angegeben)'}`,
-      `PLZ:             ${plz}`,
-      `Aufmerksam durch:${quelle || '(nicht angegeben)'}`, // <-- NEU: In E-Mail ausgeben
+      `Name:             ${name}`,
+      `E-Mail:           ${email}`,
+      `Telefon:          ${telefon || '(nicht angegeben)'}`,
+      `PLZ:              ${plz}`,
+      `Aufmerksam durch: ${quelle || '(nicht angegeben)'}`,
       '',
       'PROJEKTDETAILS',
       '--------------------------------------------------------',
@@ -123,8 +129,7 @@ module.exports = async (req, res) => {
       'DETAILS AUS DEM GARTENPLANER-RECHNER',
       '--------------------------------------------------------',
       `Gewählte Leistungen:      ${leistungen || '(keine Auswahl)'}`,
-      `Fläche:                   ${flaeche ? flaeche + ' m²' : '(nicht angegeben)'}`,
-      `Zusatzleistungen:         ${zusatzleistungen || '(keine Auswahl)'}`,
+      `Fläche je Leistung:       ${flaecheText}`,
       `Errechnete Preisspanne:   ${preisspanne || '(nicht berechnet)'}`,
       '',
       'FOTOS',
