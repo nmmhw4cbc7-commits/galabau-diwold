@@ -1,11 +1,22 @@
 /**
  * api/senden.js
  * GaLaBau Diwold – Kontaktformular-Handler für Vercel (Node.js Serverless Function)
- * Validiert die eingehenden Daten und verschickt die Anfrage per E-Mail über Resend.
+ * Validiert die eingehenden Daten, speichert die Anfrage in Supabase (für das Dashboard)
+ * und verschickt sie per E-Mail über Resend.
  */
 
 // PLZ-Prüfung: Format, Existenz und Luftlinien-Entfernung zu Römerberg (siehe api/_lib/plz.js)
 const { pruefePlz, RADIUS_KM } = require('./_lib/plz');
+
+const { createClient } = require('@supabase/supabase-js');
+
+// Supabase-Client (nur serverseitig, mit service_role-Key aus den Vercel-Umgebungsvariablen).
+// Fehlen die Variablen, wird nichts gespeichert und die Mail geht trotzdem raus.
+const supabase = (process.env.SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY)
+  ? createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY, {
+      auth: { persistSession: false }
+    })
+  : null;
 
 // Ziel-E-Mail-Adresse, an die Anfragen gehen
 const EMPFAENGER = 'info@galabau-diwold.de';
@@ -104,6 +115,25 @@ module.exports = async (req, res) => {
         message: 'Bitte geben Sie eine gültige, fünfstellige Postleitzahl ein.'
       });
       return;
+    }
+
+    // ---------- Anfrage fürs Dashboard in Supabase speichern ----------
+    // Schlägt das Speichern fehl, wird die Mail trotzdem verschickt.
+    if (supabase) {
+      try {
+        const { error: dbError } = await supabase.from('anfragen').insert({
+          name,
+          email,
+          telefon: telefon || null,
+          plz: plzErgebnis.plz,
+          leistungen: leistungen.split(/[,;|]/).map((s) => s.trim()).filter(Boolean),
+          quelle: quelle || null,
+          nachricht
+        });
+        if (dbError) console.error('Anfrage nicht gespeichert:', dbError.message);
+      } catch (dbErr) {
+        console.error('Supabase-Fehler:', dbErr);
+      }
     }
 
     const ausserhalb = plzErgebnis.status === 'ausserhalb';
